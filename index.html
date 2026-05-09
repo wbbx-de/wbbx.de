@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>WBBX — Next-Generation Web Infrastructure</title>
+  <title>WBBX — Private Web Infrastructure</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@400;500;600;800&display=swap" rel="stylesheet">
   <style>
     /* ===== CSS Reset & Variables ===== */
     *, *::before, *::after {
@@ -16,16 +16,17 @@
     }
 
     :root {
-      --bg-dark: #0F172A;
-      --bg-card: #1E293B;
-      --bg-glass: rgba(30, 41, 59, 0.7);
-      --text-main: #F1F5F9;
+      --bg-dark: #0B1120; /* Slightly darker for a more professional feel */
+      --bg-card: #141E33;
+      --bg-glass: rgba(20, 30, 51, 0.7);
+      --text-main: #F8FAFC;
       --text-muted: #94A3B8;
       --text-label: #64748B;
       --primary-cyan: #06B6D4;
       --primary-blue: #3B82F6;
       --accent-dark-blue: #0369A1;
       --gradient-brand: linear-gradient(135deg, var(--primary-cyan) 0%, var(--primary-blue) 100%);
+      --gradient-subtle: linear-gradient(135deg, rgba(6, 182, 212, 0.1) 0%, rgba(59, 130, 246, 0.1) 100%);
       --font-heading: 'Montserrat', sans-serif;
       --font-body: 'Inter', sans-serif;
       --radius: 12px;
@@ -71,28 +72,32 @@
     .section-label {
       font-family: var(--font-heading);
       font-weight: 600;
-      font-size: 13px;
+      font-size: 12px;
       letter-spacing: 3px;
       text-transform: uppercase;
       color: var(--primary-cyan);
-      margin-bottom: 12px;
+      margin-bottom: 16px;
+      display: inline-block;
+      padding: 4px 12px;
+      background: rgba(6, 182, 212, 0.1);
+      border-radius: 6px;
     }
 
     .section-title {
       font-family: var(--font-heading);
       font-weight: 800;
-      font-size: clamp(28px, 4vw, 44px);
+      font-size: clamp(28px, 4vw, 40px);
       line-height: 1.15;
       color: var(--text-main);
-      margin-bottom: 16px;
+      margin-bottom: 20px;
     }
 
     .section-desc {
       font-weight: 300;
       font-size: 17px;
       color: var(--text-muted);
-      max-width: 600px;
-      line-height: 1.7;
+      max-width: 640px;
+      line-height: 1.8;
     }
 
     /* ===== Buttons ===== */
@@ -102,48 +107,43 @@
       gap: 8px;
       font-family: var(--font-heading);
       font-weight: 600;
-      font-size: 15px;
+      font-size: 14px;
       padding: 14px 28px;
-      border-radius: 10px;
+      border-radius: 8px;
       border: none;
       cursor: pointer;
       text-decoration: none;
       transition: var(--transition);
       position: relative;
       overflow: hidden;
+      letter-spacing: 0.5px;
     }
 
     .btn-primary {
       background: var(--gradient-brand);
       color: #fff;
-      box-shadow: 0 4px 24px rgba(6, 182, 212, 0.25);
+      box-shadow: 0 4px 20px rgba(6, 182, 212, 0.2);
     }
 
     .btn-primary:hover {
       transform: translateY(-2px);
-      box-shadow: 0 8px 32px rgba(6, 182, 212, 0.4);
-    }
-
-    .btn-primary:active {
-      transform: translateY(0);
+      box-shadow: 0 8px 28px rgba(6, 182, 212, 0.35);
     }
 
     .btn-secondary {
-      background: transparent;
+      background: var(--bg-card);
       color: var(--text-main);
-      border: 1.5px solid var(--text-label);
+      border: 1px solid rgba(148, 163, 184, 0.2);
     }
 
     .btn-secondary:hover {
       border-color: var(--primary-cyan);
-      color: var(--primary-cyan);
-      background: rgba(6, 182, 212, 0.06);
+      background: rgba(6, 182, 212, 0.05);
     }
 
     .btn-sm {
       padding: 10px 20px;
       font-size: 13px;
-      border-radius: 8px;
     }
 
     /* ===== Navbar ===== */
@@ -162,10 +162,10 @@
     }
 
     .navbar.scrolled {
-      background: rgba(15, 23, 42, 0.85);
-      backdrop-filter: blur(20px) saturate(180%);
-      -webkit-backdrop-filter: blur(20px) saturate(180%);
-      border-bottom: 1px solid rgba(148, 163, 184, 0.08);
+      background: rgba(11, 17, 32, 0.9);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.05);
     }
 
     .navbar-inner {
@@ -186,37 +186,40 @@
 
     .nav-links a {
       font-family: var(--font-body);
-      font-weight: 400;
-      font-size: 14px;
+      font-weight: 500;
+      font-size: 13px;
       color: var(--text-muted);
       text-decoration: none;
       transition: var(--transition);
-      position: relative;
+      letter-spacing: 0.5px;
     }
 
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: -4px;
-      left: 0;
-      width: 0;
-      height: 1.5px;
-      background: var(--gradient-brand);
-      transition: var(--transition);
-    }
-
-    .nav-links a:hover {
+    .nav-links a:hover, .nav-links a.active {
       color: var(--text-main);
-    }
-
-    .nav-links a:hover::after {
-      width: 100%;
     }
 
     .nav-cta {
       display: flex;
       align-items: center;
       gap: 16px;
+    }
+
+    .admin-lock {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--text-label);
+      text-decoration: none;
+      font-family: var(--font-heading);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: var(--transition);
+    }
+
+    .admin-lock:hover {
+      color: var(--primary-cyan);
     }
 
     .mobile-toggle {
@@ -229,8 +232,8 @@
 
     .mobile-toggle svg {
       stroke: var(--text-main);
-      width: 28px;
-      height: 28px;
+      width: 24px;
+      height: 24px;
     }
 
     /* ===== Mobile Menu ===== */
@@ -241,7 +244,7 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: rgba(15, 23, 42, 0.97);
+      background: rgba(11, 17, 32, 0.98);
       backdrop-filter: blur(24px);
       z-index: 999;
       padding: 32px 24px;
@@ -256,16 +259,11 @@
     .mobile-menu a {
       font-family: var(--font-heading);
       font-weight: 600;
-      font-size: 20px;
+      font-size: 18px;
       color: var(--text-main);
       text-decoration: none;
       padding: 12px 0;
-      border-bottom: 1px solid rgba(148, 163, 184, 0.1);
-      transition: var(--transition);
-    }
-
-    .mobile-menu a:hover {
-      color: var(--primary-cyan);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.05);
     }
 
     /* ===== Hero Section ===== */
@@ -283,20 +281,9 @@
       position: absolute;
       top: -200px;
       right: -200px;
-      width: 700px;
-      height: 700px;
-      background: radial-gradient(circle, rgba(6, 182, 212, 0.08) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    .hero::after {
-      content: '';
-      position: absolute;
-      bottom: -100px;
-      left: -150px;
-      width: 500px;
-      height: 500px;
-      background: radial-gradient(circle, rgba(59, 130, 246, 0.06) 0%, transparent 70%);
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, rgba(6, 182, 212, 0.05) 0%, transparent 60%);
       pointer-events: none;
     }
 
@@ -310,16 +297,16 @@
     }
 
     .hero-content {
-      max-width: 580px;
+      max-width: 600px;
     }
 
     .hero h1 {
       font-family: var(--font-heading);
       font-weight: 800;
-      font-size: clamp(36px, 5.5vw, 60px);
-      line-height: 1.08;
+      font-size: clamp(32px, 4.5vw, 54px);
+      line-height: 1.1;
       letter-spacing: -1px;
-      margin-bottom: 20px;
+      margin-bottom: 24px;
     }
 
     .hero h2 {
@@ -328,8 +315,8 @@
       font-size: 18px;
       color: var(--text-muted);
       line-height: 1.7;
-      margin-bottom: 36px;
-      max-width: 480px;
+      margin-bottom: 40px;
+      max-width: 520px;
     }
 
     .hero-buttons {
@@ -346,22 +333,78 @@
 
     .hero-illustration svg {
       width: 100%;
-      max-width: 500px;
+      max-width: 480px;
       height: auto;
     }
 
-    /* ===== Features Grid ===== */
-    .features {
+    /* ===== About Section (Inspired by DNBX) ===== */
+    .about-section {
       padding: 120px 0;
-      position: relative;
+      background: linear-gradient(to bottom, transparent, rgba(20, 30, 51, 0.3), transparent);
     }
 
-    .features-header {
+    .about-header {
       text-align: center;
       margin-bottom: 64px;
     }
 
-    .features-header .section-desc {
+    .about-header .section-desc {
+      margin: 0 auto;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+
+    .about-card {
+      background: var(--bg-card);
+      border: 1px solid rgba(148, 163, 184, 0.08);
+      border-radius: var(--radius-lg);
+      padding: 40px 32px;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .about-card:hover {
+      border-color: rgba(6, 182, 212, 0.2);
+      transform: translateY(-2px);
+    }
+
+    .about-icon {
+      width: 40px;
+      height: 40px;
+      margin-bottom: 24px;
+      color: var(--primary-cyan);
+    }
+
+    .about-card h3 {
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: 18px;
+      margin-bottom: 12px;
+      color: var(--text-main);
+    }
+
+    .about-card p {
+      font-weight: 300;
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ===== Architecture / Features ===== */
+    .architecture {
+      padding: 120px 0;
+    }
+    
+    .arch-header {
+      margin-bottom: 64px;
+      text-align: center;
+    }
+
+    .arch-header .section-desc {
       margin: 0 auto;
     }
 
@@ -373,50 +416,27 @@
 
     .feature-card {
       background: var(--bg-card);
-      border: 1px solid rgba(148, 163, 184, 0.08);
+      border: 1px solid rgba(148, 163, 184, 0.05);
       border-radius: var(--radius-lg);
       padding: 36px 32px;
       transition: var(--transition);
       position: relative;
-      overflow: hidden;
-    }
-
-    .feature-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: var(--gradient-brand);
-      opacity: 0;
-      transition: var(--transition);
     }
 
     .feature-card:hover {
-      transform: translateY(-4px);
+      background: rgba(30, 41, 59, 0.6);
       border-color: rgba(6, 182, 212, 0.15);
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
-    }
-
-    .feature-card:hover::before {
-      opacity: 1;
     }
 
     .feature-icon {
       width: 48px;
       height: 48px;
       border-radius: 12px;
-      background: rgba(6, 182, 212, 0.08);
+      background: var(--gradient-subtle);
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 20px;
-      transition: var(--transition);
-    }
-
-    .feature-card:hover .feature-icon {
-      background: rgba(6, 182, 212, 0.15);
+      margin-bottom: 24px;
     }
 
     .feature-icon svg {
@@ -427,9 +447,9 @@
     .feature-card h3 {
       font-family: var(--font-heading);
       font-weight: 600;
-      font-size: 18px;
-      margin-bottom: 10px;
-      color: var(--text-main);
+      font-size: 16px;
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
     }
 
     .feature-card p {
@@ -439,106 +459,47 @@
       line-height: 1.7;
     }
 
-    /* ===== Under the Hood / Metrics ===== */
+    /* ===== Scale / Metrics ===== */
     .metrics {
-      padding: 100px 0;
-      position: relative;
+      padding: 80px 0;
     }
 
     .metrics-inner {
       background: var(--bg-card);
-      border: 1px solid rgba(148, 163, 184, 0.06);
+      border: 1px solid rgba(148, 163, 184, 0.08);
       border-radius: var(--radius-lg);
-      padding: 72px 48px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .metrics-inner::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: var(--gradient-brand);
-    }
-
-    .metrics-bg-glow {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 600px;
-      height: 400px;
-      background: radial-gradient(ellipse, rgba(6, 182, 212, 0.04) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    .metrics-header {
-      text-align: center;
-      margin-bottom: 56px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .metrics-header .section-desc {
-      margin: 0 auto;
-    }
-
-    .metrics-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 48px;
-      position: relative;
-      z-index: 1;
+      padding: 64px 48px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 40px;
     }
 
     .metric-item {
       text-align: center;
-      position: relative;
-    }
-
-    .metric-item:not(:last-child)::after {
-      content: '';
-      position: absolute;
-      right: -24px;
-      top: 10%;
-      height: 80%;
-      width: 1px;
-      background: rgba(148, 163, 184, 0.1);
     }
 
     .metric-value {
       font-family: var(--font-heading);
       font-weight: 800;
-      font-size: clamp(40px, 6vw, 64px);
+      font-size: clamp(32px, 5vw, 48px);
       line-height: 1;
       margin-bottom: 8px;
     }
 
-    .metric-unit {
-      font-size: clamp(24px, 3vw, 36px);
-      font-weight: 600;
-    }
-
     .metric-label {
-      font-weight: 400;
-      font-size: 15px;
+      font-weight: 500;
+      font-size: 14px;
       color: var(--text-muted);
-      margin-top: 4px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
 
-    .metric-sub {
-      font-weight: 300;
-      font-size: 13px;
-      color: var(--text-label);
-      margin-top: 6px;
-    }
-
-    /* ===== Code Preview ===== */
+    /* ===== Internal CLI Preview ===== */
     .code-section {
-      padding: 100px 0;
+      padding: 120px 0;
+      background: linear-gradient(to top, transparent, rgba(20, 30, 51, 0.3), transparent);
     }
 
     .code-layout {
@@ -549,66 +510,38 @@
     }
 
     .code-content {
-      max-width: 460px;
-    }
-
-    .code-content .section-desc {
-      margin-bottom: 32px;
-    }
-
-    .code-checklist {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-
-    .code-checklist li {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 14px;
-      color: var(--text-muted);
-    }
-
-    .code-checklist li svg {
-      flex-shrink: 0;
-      width: 18px;
-      height: 18px;
+      max-width: 480px;
     }
 
     .terminal-window {
-      background: #0C1222;
-      border: 1px solid rgba(148, 163, 184, 0.1);
-      border-radius: var(--radius-lg);
+      background: #060913;
+      border: 1px solid rgba(148, 163, 184, 0.15);
+      border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.5);
     }
 
     .terminal-bar {
       display: flex;
       align-items: center;
       gap: 8px;
-      padding: 14px 20px;
-      background: rgba(30, 41, 59, 0.5);
-      border-bottom: 1px solid rgba(148, 163, 184, 0.06);
+      padding: 12px 20px;
+      background: #0B1120;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.1);
     }
 
-    .terminal-dot {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-    }
-
+    .terminal-dot { width: 10px; height: 10px; border-radius: 50%; }
     .terminal-dot.red { background: #EF4444; }
     .terminal-dot.yellow { background: #F59E0B; }
     .terminal-dot.green { background: #10B981; }
 
     .terminal-title {
-      margin-left: 12px;
+      margin-left: auto;
+      margin-right: auto;
       font-family: var(--font-body);
-      font-size: 12px;
+      font-size: 11px;
       color: var(--text-label);
+      letter-spacing: 0.5px;
     }
 
     .terminal-body {
@@ -620,299 +553,158 @@
       overflow-x: auto;
     }
 
-    .terminal-body .prompt {
-      color: var(--primary-cyan);
-      user-select: none;
-    }
-
-    .terminal-body .cmd {
-      color: var(--text-main);
-    }
-
-    .terminal-body .flag {
-      color: var(--primary-blue);
-    }
-
-    .terminal-body .string {
-      color: #10B981;
-    }
-
-    .terminal-body .comment {
-      color: var(--text-label);
-      font-style: italic;
-    }
-
-    .terminal-body .key {
-      color: var(--primary-cyan);
-    }
-
-    .terminal-body .val {
-      color: #F59E0B;
-    }
-
-    .terminal-body .bracket {
-      color: var(--text-label);
-    }
+    .terminal-body .prompt { color: var(--primary-cyan); user-select: none; }
+    .terminal-body .cmd { color: #E2E8F0; font-weight: 500; }
+    .terminal-body .flag { color: var(--primary-blue); }
+    .terminal-body .string { color: #10B981; }
+    .terminal-body .comment { color: var(--text-label); font-style: italic; }
+    .terminal-body .key { color: var(--primary-cyan); }
+    .terminal-body .val { color: #F59E0B; }
+    .terminal-body .bracket { color: var(--text-label); }
 
     .terminal-cursor {
       display: inline-block;
       width: 8px;
-      height: 16px;
-      background: var(--primary-cyan);
+      height: 15px;
+      background: var(--text-muted);
       animation: blink 1s step-end infinite;
-      vertical-align: text-bottom;
-      margin-left: 2px;
+      vertical-align: middle;
+      margin-left: 4px;
     }
 
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0; }
-    }
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
-    /* ===== Pricing ===== */
-    .pricing {
+    /* ===== Identity Section ===== */
+    .identity-section {
       padding: 120px 0;
     }
 
-    .pricing-header {
-      text-align: center;
-      margin-bottom: 64px;
-    }
-
-    .pricing-header .section-desc {
-      margin: 0 auto;
-    }
-
-    .pricing-grid {
+    .identity-layout {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-      align-items: start;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
     }
 
-    .pricing-card {
+    .identity-colors {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .color-swatch {
+      display: flex;
+      align-items: center;
+      background: var(--bg-card);
+      border: 1px solid rgba(148, 163, 184, 0.08);
+      border-radius: 12px;
+      padding: 16px;
+    }
+
+    .color-box {
+      width: 64px;
+      height: 64px;
+      border-radius: 8px;
+      margin-right: 24px;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .color-info h4 {
+      font-family: var(--font-heading);
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+
+    .color-info p {
+      font-family: monospace;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .identity-typography {
+      background: var(--bg-card);
+      border: 1px solid rgba(148, 163, 184, 0.08);
+      border-radius: 12px;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .type-sample-1 {
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 32px;
+      margin-bottom: 16px;
+      color: var(--text-main);
+    }
+
+    .type-sample-2 {
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: 16px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* ===== Contact Section ===== */
+    .contact-section {
+      padding: 80px 0 160px;
+      text-align: center;
+    }
+
+    .contact-box {
       background: var(--bg-card);
       border: 1px solid rgba(148, 163, 184, 0.08);
       border-radius: var(--radius-lg);
-      padding: 40px 32px;
-      transition: var(--transition);
-      position: relative;
+      padding: 64px;
+      max-width: 700px;
+      margin: 0 auto;
     }
 
-    .pricing-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.25);
-    }
-
-    .pricing-card.featured {
-      border: none;
-      padding: 42px 34px;
-      position: relative;
-      background: var(--bg-card);
-    }
-
-    .pricing-card.featured::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: var(--radius-lg);
-      padding: 2px;
-      background: var(--gradient-brand);
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      pointer-events: none;
-    }
-
-    .pricing-card.featured::after {
-      content: '';
-      position: absolute;
-      inset: -1px;
-      border-radius: var(--radius-lg);
-      background: var(--gradient-brand);
-      opacity: 0.06;
-      pointer-events: none;
-    }
-
-    .pricing-badge {
-      display: inline-block;
+    .contact-box h2 {
       font-family: var(--font-heading);
       font-weight: 600;
-      font-size: 11px;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: var(--primary-cyan);
-      background: rgba(6, 182, 212, 0.1);
-      padding: 4px 12px;
-      border-radius: 6px;
+      font-size: 24px;
       margin-bottom: 16px;
     }
 
-    .pricing-card h3 {
-      font-family: var(--font-heading);
-      font-weight: 600;
-      font-size: 20px;
-      margin-bottom: 8px;
-      color: var(--text-main);
-    }
-
-    .pricing-card .price {
-      display: flex;
-      align-items: baseline;
-      gap: 4px;
-      margin-bottom: 4px;
-      margin-top: 20px;
-    }
-
-    .pricing-card .price .currency {
-      font-family: var(--font-heading);
-      font-weight: 600;
-      font-size: 20px;
+    .contact-box p {
       color: var(--text-muted);
-    }
-
-    .pricing-card .price .amount {
-      font-family: var(--font-heading);
-      font-weight: 800;
-      font-size: 48px;
-      color: var(--text-main);
-      line-height: 1;
-    }
-
-    .pricing-card .price .period {
-      font-weight: 300;
-      font-size: 14px;
-      color: var(--text-label);
-    }
-
-    .pricing-card .price-desc {
-      font-size: 13px;
-      color: var(--text-label);
-      margin-bottom: 28px;
-    }
-
-    .pricing-card .divider {
-      height: 1px;
-      background: rgba(148, 163, 184, 0.08);
-      margin: 24px 0;
-    }
-
-    .pricing-features {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
       margin-bottom: 32px;
-    }
-
-    .pricing-features li {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 14px;
-      color: var(--text-muted);
-    }
-
-    .pricing-features li svg {
-      flex-shrink: 0;
-      width: 16px;
-      height: 16px;
-    }
-
-    .pricing-features li.disabled {
-      color: var(--text-label);
-      text-decoration: line-through;
-      opacity: 0.5;
-    }
-
-    .pricing-card .btn {
-      width: 100%;
-      justify-content: center;
+      font-size: 15px;
     }
 
     /* ===== Footer ===== */
     .footer {
-      padding: 80px 0 40px;
-      border-top: 1px solid rgba(148, 163, 184, 0.06);
+      padding: 40px 0;
+      border-top: 1px solid rgba(148, 163, 184, 0.05);
+      background: #080C17;
     }
 
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 1.5fr 1fr 1fr 1fr;
-      gap: 48px;
-      margin-bottom: 56px;
-    }
-
-    .footer-brand p {
-      font-size: 14px;
-      color: var(--text-muted);
-      line-height: 1.7;
-      margin-top: 16px;
-      max-width: 280px;
-    }
-
-    .footer-col h4 {
-      font-family: var(--font-heading);
-      font-weight: 600;
-      font-size: 13px;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: var(--text-main);
-      margin-bottom: 20px;
-    }
-
-    .footer-col ul {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .footer-col ul a {
-      font-size: 14px;
-      color: var(--text-muted);
-      text-decoration: none;
-      transition: var(--transition);
-    }
-
-    .footer-col ul a:hover {
-      color: var(--primary-cyan);
-    }
-
-    .footer-bottom {
+    .footer-inner {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding-top: 32px;
-      border-top: 1px solid rgba(148, 163, 184, 0.06);
-    }
-
-    .footer-bottom p {
-      font-size: 13px;
-      color: var(--text-label);
-    }
-
-    .footer-bottom-links {
-      display: flex;
+      flex-wrap: wrap;
       gap: 24px;
     }
 
-    .footer-bottom-links a {
+    .footer-brand svg {
+      height: 24px;
+      width: auto;
+      opacity: 0.5;
+    }
+
+    .footer-text {
       font-size: 13px;
       color: var(--text-label);
-      text-decoration: none;
-      transition: var(--transition);
     }
 
-    .footer-bottom-links a:hover {
-      color: var(--primary-cyan);
-    }
-
-    /* ===== Scroll Reveal ===== */
+    /* ===== Animations ===== */
     .reveal {
       opacity: 0;
-      transform: translateY(32px);
-      transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1), transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+      transform: translateY(20px);
+      transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .reveal.visible {
@@ -920,160 +712,41 @@
       transform: translateY(0);
     }
 
-    /* ===== Floating Particles ===== */
     .particles {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 0;
-      overflow: hidden;
+      top: 0; left: 0; width: 100%; height: 100%;
+      pointer-events: none; z-index: 0; overflow: hidden;
     }
-
     .particle {
-      position: absolute;
-      width: 2px;
-      height: 2px;
-      background: var(--primary-cyan);
-      border-radius: 50%;
-      opacity: 0;
-      animation: particleFloat linear infinite;
+      position: absolute; width: 2px; height: 2px;
+      background: var(--primary-cyan); border-radius: 50%;
+      opacity: 0; animation: particleFloat linear infinite;
     }
 
     @keyframes particleFloat {
-      0% {
-        opacity: 0;
-        transform: translateY(0) scale(0);
-      }
-      10% {
-        opacity: 0.4;
-        transform: translateY(-20px) scale(1);
-      }
-      90% {
-        opacity: 0.15;
-      }
-      100% {
-        opacity: 0;
-        transform: translateY(-100vh) scale(0.5);
-      }
-    }
-
-    /* ===== Reduced Motion ===== */
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        transition-duration: 0.01ms !important;
-      }
-      .reveal {
-        opacity: 1;
-        transform: none;
-      }
-      .particle { display: none; }
-      .terminal-cursor { animation: none; opacity: 1; }
+      0% { opacity: 0; transform: translateY(0); }
+      10% { opacity: 0.2; }
+      90% { opacity: 0.1; }
+      100% { opacity: 0; transform: translateY(-100vh); }
     }
 
     /* ===== Responsive ===== */
     @media (max-width: 1024px) {
-      .hero-grid {
-        grid-template-columns: 1fr;
-        gap: 40px;
-        text-align: center;
-      }
-
-      .hero-content {
-        max-width: 100%;
-      }
-
-      .hero h2 {
-        margin-left: auto;
-        margin-right: auto;
-      }
-
-      .hero-buttons {
-        justify-content: center;
-      }
-
-      .hero-illustration svg {
-        max-width: 360px;
-      }
-
-      .features-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .metrics-grid {
-        gap: 32px;
-      }
-
-      .metric-item:not(:last-child)::after {
-        display: none;
-      }
-
-      .code-layout {
-        grid-template-columns: 1fr;
-        gap: 40px;
-      }
-
-      .code-content {
-        max-width: 100%;
-      }
-
-      .pricing-grid {
-        grid-template-columns: 1fr;
-        max-width: 440px;
-        margin: 0 auto;
-      }
-
-      .footer-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 36px;
-      }
+      .hero-grid, .code-layout, .identity-layout { grid-template-columns: 1fr; gap: 48px; }
+      .hero-content, .code-content { max-width: 100%; text-align: center; }
+      .hero h2, .section-desc { margin-left: auto; margin-right: auto; }
+      .hero-buttons { justify-content: center; }
+      .about-grid, .features-grid { grid-template-columns: repeat(2, 1fr); }
     }
 
     @media (max-width: 768px) {
-      .nav-links, .nav-cta .btn {
-        display: none;
-      }
-
-      .mobile-toggle {
-        display: block;
-      }
-
-      .features-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .metrics-grid {
-        grid-template-columns: 1fr;
-        gap: 40px;
-      }
-
-      .metrics-inner {
-        padding: 48px 24px;
-      }
-
-      .footer-grid {
-        grid-template-columns: 1fr;
-        gap: 32px;
-      }
-
-      .footer-bottom {
-        flex-direction: column;
-        gap: 16px;
-        text-align: center;
-      }
-
-      .hero {
-        min-height: auto;
-        padding-top: 120px;
-        padding-bottom: 60px;
-      }
-
-      .hero-illustration {
-        display: none;
-      }
+      .nav-links, .nav-cta { display: none; }
+      .mobile-toggle { display: block; }
+      .about-grid, .features-grid { grid-template-columns: 1fr; }
+      .metrics-inner { padding: 40px 24px; flex-direction: column; gap: 32px; }
+      .contact-box { padding: 40px 24px; }
+      .footer-inner { flex-direction: column; text-align: center; }
+      .hero { padding-top: 100px; min-height: auto; padding-bottom: 60px; }
     }
   </style>
 </head>
@@ -1086,30 +759,37 @@
   <nav class="navbar" role="navigation" aria-label="Main navigation">
     <div class="navbar-inner">
       <a href="#" aria-label="WBBX Home">
-        <svg class="wbbx-logo" viewBox="0 0 400 108" xmlns="http://www.w3.org/2000/svg" style="height: 40px; width: auto;"><defs><linearGradient id="boxBg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#1E293B" /><stop offset="100%" stop-color="#0F172A" /></linearGradient><linearGradient id="boxBorder" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#06B6D4" /><stop offset="100%" stop-color="#3B82F6" /></linearGradient><linearGradient id="gradFront" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#06B6D4" /><stop offset="100%" stop-color="#3B82F6" /></linearGradient><linearGradient id="gradBack" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#2563EB" /><stop offset="100%" stop-color="#0369A1" /></linearGradient><filter id="shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="3" dy="2" stdDeviation="3" flood-color="#000000" flood-opacity="0.6" /></filter></defs><g><rect x="1" y="1" width="106" height="106" rx="24" fill="url(#boxBg)" stroke="url(#boxBorder)" stroke-width="2"/><circle cx="86" cy="94" r="2.5" fill="#06B6D4" /><circle cx="94" cy="94" r="2.5" fill="#3B82F6" /><g stroke="url(#boxBorder)" stroke-width="1.5" stroke-linejoin="round"><polygon points="82,19 98,19 82,89 66,89" fill="url(#gradBack)" /><polygon points="46,39 62,39 46,89 30,89" fill="url(#gradBack)" /><polygon points="46,39 62,39 82,89 66,89" fill="url(#gradFront)" filter="url(#shadow)" /><polygon points="10,19 26,19 46,89 30,89" fill="url(#gradFront)" filter="url(#shadow)" /></g></g><text x="130" y="56" font-family="'Montserrat', sans-serif" font-weight="800" font-size="72" fill="#FFFFFF" letter-spacing="4" dominant-baseline="central">WBBX</text></svg>
+        <svg class="wbbx-logo" viewBox="0 0 400 108" xmlns="http://www.w3.org/2000/svg" style="height: 36px; width: auto;"><defs><linearGradient id="boxBg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#141E33" /><stop offset="100%" stop-color="#0B1120" /></linearGradient><linearGradient id="boxBorder" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#06B6D4" /><stop offset="100%" stop-color="#3B82F6" /></linearGradient><linearGradient id="gradFront" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#06B6D4" /><stop offset="100%" stop-color="#3B82F6" /></linearGradient><linearGradient id="gradBack" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#2563EB" /><stop offset="100%" stop-color="#0369A1" /></linearGradient><filter id="shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="3" dy="2" stdDeviation="3" flood-color="#000000" flood-opacity="0.6" /></filter></defs><g><rect x="1" y="1" width="106" height="106" rx="24" fill="url(#boxBg)" stroke="url(#boxBorder)" stroke-width="2"/><circle cx="86" cy="94" r="2.5" fill="#06B6D4" /><circle cx="94" cy="94" r="2.5" fill="#3B82F6" /><g stroke="url(#boxBorder)" stroke-width="1.5" stroke-linejoin="round"><polygon points="82,19 98,19 82,89 66,89" fill="url(#gradBack)" /><polygon points="46,39 62,39 46,89 30,89" fill="url(#gradBack)" /><polygon points="46,39 62,39 82,89 66,89" fill="url(#gradFront)" filter="url(#shadow)" /><polygon points="10,19 26,19 46,89 30,89" fill="url(#gradFront)" filter="url(#shadow)" /></g></g><text x="130" y="56" font-family="'Montserrat', sans-serif" font-weight="800" font-size="72" fill="#FFFFFF" letter-spacing="4" dominant-baseline="central">WBBX</text></svg>
       </a>
       <ul class="nav-links">
-        <li><a href="#features">Platform</a></li>
-        <li><a href="#metrics">Performance</a></li>
-        <li><a href="#pricing">Pricing</a></li>
-        <li><a href="#docs">Docs</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#architecture">Architecture</a></li>
+        <li><a href="#terminal">Terminal</a></li>
+        <li><a href="#identity">Identity</a></li>
+        <li><a href="#contact">Contact</a></li>
       </ul>
       <div class="nav-cta">
-        <a href="#pricing" class="btn btn-primary btn-sm">Get Started</a>
-        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation menu" aria-expanded="false">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-        </button>
+        <a href="#" class="admin-lock">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+          System Auth
+        </a>
       </div>
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
     </div>
   </nav>
 
   <!-- Mobile Menu -->
-  <div class="mobile-menu" id="mobileMenu" role="navigation" aria-label="Mobile navigation">
-    <a href="#features" onclick="closeMobile()">Platform</a>
-    <a href="#metrics" onclick="closeMobile()">Performance</a>
-    <a href="#pricing" onclick="closeMobile()">Pricing</a>
-    <a href="#docs" onclick="closeMobile()">Docs</a>
-    <a href="#pricing" class="btn btn-primary" onclick="closeMobile()" style="text-align:center; margin-top:16px;">Get Started</a>
+  <div class="mobile-menu" id="mobileMenu" role="navigation">
+    <a href="#about" onclick="closeMobile()">About</a>
+    <a href="#architecture" onclick="closeMobile()">Architecture</a>
+    <a href="#terminal" onclick="closeMobile()">Terminal</a>
+    <a href="#identity" onclick="closeMobile()">Identity</a>
+    <a href="#contact" onclick="closeMobile()">Contact</a>
+    <div style="margin-top: 24px; padding-top: 24px; border-top: 1px solid rgba(148,163,184,0.1);">
+      <a href="#" style="border: none; color: var(--text-muted); font-size: 14px; text-transform: uppercase; letter-spacing: 1px;">System Auth</a>
+    </div>
   </div>
 
   <!-- Hero Section -->
@@ -1117,287 +797,168 @@
     <div class="container">
       <div class="hero-grid">
         <div class="hero-content reveal">
-          <h1>Next-Generation<br><span class="gradient-text">Web Infrastructure</span></h1>
-          <h2>Deploy globally distributed applications in seconds. WBBX delivers sub-10ms latency, enterprise-grade security, and infinite scale from a single unified platform.</h2>
+          <h1>A private system for managing <span class="gradient-text">web-applications.</span></h1>
+          <h2>WBBX.de is a private infrastructure point created to bring structure to our internal deployments. It exists for one reason: to make day-to-day administration simpler for its founders.</h2>
           <div class="hero-buttons">
-            <a href="#pricing" class="btn btn-primary">Deploy Now</a>
-            <a href="#features" class="btn btn-secondary">Explore Platform</a>
+            <a href="#about" class="btn btn-primary">Read the Outline</a>
+            <a href="#architecture" class="btn btn-secondary">View Architecture</a>
           </div>
         </div>
         <div class="hero-illustration reveal">
-          <!-- Abstract Tech Illustration -->
+          <!-- Abstract Technical Node Illustration -->
           <svg viewBox="0 0 500 420" fill="none" xmlns="http://www.w3.org/2000/svg">
             <defs>
-              <linearGradient id="heroGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#06B6D4" stop-opacity="0.3"/>
-                <stop offset="100%" stop-color="#3B82F6" stop-opacity="0.1"/>
+              <linearGradient id="hGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#06B6D4" stop-opacity="0.2"/>
+                <stop offset="100%" stop-color="#3B82F6" stop-opacity="0.05"/>
               </linearGradient>
-              <linearGradient id="heroGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+              <linearGradient id="hGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
                 <stop offset="0%" stop-color="#06B6D4"/>
                 <stop offset="100%" stop-color="#3B82F6"/>
               </linearGradient>
-              <linearGradient id="heroGrad3" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stop-color="#06B6D4" stop-opacity="0.6"/>
-                <stop offset="100%" stop-color="#3B82F6" stop-opacity="0.2"/>
-              </linearGradient>
-              <filter id="heroGlow">
-                <feGaussianBlur stdDeviation="8" result="blur"/>
+              <filter id="glow">
+                <feGaussianBlur stdDeviation="6" result="blur"/>
                 <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
               </filter>
             </defs>
-            <!-- Background hexagon grid -->
-            <g opacity="0.06" stroke="#06B6D4" stroke-width="0.8">
-              <path d="M60 80 L100 57 L140 80 L140 126 L100 149 L60 126Z"/>
-              <path d="M140 80 L180 57 L220 80 L220 126 L180 149 L140 126Z"/>
-              <path d="M100 149 L140 126 L180 149 L180 195 L140 218 L100 195Z"/>
-              <path d="M260 60 L300 37 L340 60 L340 106 L300 129 L260 106Z"/>
-              <path d="M340 60 L380 37 L420 60 L420 106 L380 129 L340 106Z"/>
-              <path d="M300 129 L340 106 L380 129 L380 175 L340 198 L300 175Z"/>
-              <path d="M180 195 L220 172 L260 195 L260 241 L220 264 L180 241Z"/>
+            <g stroke="url(#hGrad2)" stroke-width="1" opacity="0.15">
+              <circle cx="250" cy="210" r="140" stroke-dasharray="4 8" />
+              <circle cx="250" cy="210" r="100" />
+              <circle cx="250" cy="210" r="60" stroke-dasharray="2 4" />
             </g>
-            <!-- Central orb -->
-            <circle cx="250" cy="200" r="72" fill="url(#heroGrad1)" stroke="url(#heroGrad2)" stroke-width="1.5" opacity="0.9">
-              <animate attributeName="r" values="72;76;72" dur="4s" repeatCount="indefinite"/>
-            </circle>
-            <circle cx="250" cy="200" r="48" fill="none" stroke="url(#heroGrad2)" stroke-width="0.8" opacity="0.5" stroke-dasharray="4 6">
-              <animateTransform attributeName="transform" type="rotate" from="0 250 200" to="360 250 200" dur="20s" repeatCount="indefinite"/>
-            </circle>
-            <circle cx="250" cy="200" r="24" fill="url(#heroGrad2)" opacity="0.7" filter="url(#heroGlow)"/>
-            <!-- Orbital rings -->
-            <ellipse cx="250" cy="200" rx="150" ry="50" fill="none" stroke="url(#heroGrad3)" stroke-width="1" transform="rotate(-20 250 200)">
-              <animateTransform attributeName="transform" type="rotate" from="-20 250 200" to="340 250 200" dur="30s" repeatCount="indefinite"/>
-            </ellipse>
-            <ellipse cx="250" cy="200" rx="130" ry="42" fill="none" stroke="url(#heroGrad3)" stroke-width="0.7" transform="rotate(40 250 200)">
-              <animateTransform attributeName="transform" type="rotate" from="40 250 200" to="-320 250 200" dur="25s" repeatCount="indefinite"/>
-            </ellipse>
-            <!-- Node dots on orbits -->
-            <circle r="5" fill="#06B6D4" opacity="0.9">
-              <animateMotion dur="30s" repeatCount="indefinite" path="M100,200 A150,50 -20 1,1 400,200 A150,50 -20 1,1 100,200"/>
-            </circle>
-            <circle r="4" fill="#3B82F6" opacity="0.8">
-              <animateMotion dur="25s" repeatCount="indefinite" path="M120,200 A130,42 40 1,1 380,200 A130,42 40 1,1 120,200"/>
-            </circle>
-            <circle r="3.5" fill="#06B6D4" opacity="0.7">
-              <animateMotion dur="18s" repeatCount="indefinite" path="M100,200 A150,50 -20 1,1 400,200 A150,50 -20 1,1 100,200" begin="-8s"/>
-            </circle>
-            <!-- Connection lines -->
-            <g stroke="url(#heroGrad2)" stroke-width="0.8" opacity="0.25">
-              <line x1="100" y1="140" x2="250" y2="200"/>
-              <line x1="400" y1="140" x2="250" y2="200"/>
-              <line x1="140" y1="320" x2="250" y2="200"/>
-              <line x1="360" y1="320" x2="250" y2="200"/>
-              <line x1="80" y1="240" x2="250" y2="200"/>
-              <line x1="420" y1="240" x2="250" y2="200"/>
+            <path d="M250 70 L350 280 L150 280 Z" fill="url(#hGrad1)" stroke="url(#hGrad2)" stroke-width="1" opacity="0.6"/>
+            <circle cx="250" cy="210" r="16" fill="url(#hGrad2)" filter="url(#glow)"/>
+            <circle cx="250" cy="70" r="6" fill="#06B6D4"/>
+            <circle cx="350" cy="280" r="6" fill="#3B82F6"/>
+            <circle cx="150" cy="280" r="6" fill="#06B6D4"/>
+            <g stroke="url(#hGrad2)" stroke-width="1.5" opacity="0.5">
+              <line x1="250" y1="210" x2="250" y2="70" />
+              <line x1="250" y1="210" x2="350" y2="280" />
+              <line x1="250" y1="210" x2="150" y2="280" />
             </g>
-            <!-- Endpoint nodes -->
-            <g>
-              <circle cx="100" cy="140" r="8" fill="#0F172A" stroke="#06B6D4" stroke-width="1.2"/>
-              <circle cx="100" cy="140" r="3" fill="#06B6D4"/>
-              <circle cx="400" cy="140" r="8" fill="#0F172A" stroke="#3B82F6" stroke-width="1.2"/>
-              <circle cx="400" cy="140" r="3" fill="#3B82F6"/>
-              <circle cx="140" cy="320" r="8" fill="#0F172A" stroke="#3B82F6" stroke-width="1.2"/>
-              <circle cx="140" cy="320" r="3" fill="#3B82F6"/>
-              <circle cx="360" cy="320" r="8" fill="#0F172A" stroke="#06B6D4" stroke-width="1.2"/>
-              <circle cx="360" cy="320" r="3" fill="#06B6D4"/>
-              <circle cx="80" cy="240" r="6" fill="#0F172A" stroke="#06B6D4" stroke-width="1"/>
-              <circle cx="80" cy="240" r="2.5" fill="#06B6D4"/>
-              <circle cx="420" cy="240" r="6" fill="#0F172A" stroke="#3B82F6" stroke-width="1"/>
-              <circle cx="420" cy="240" r="2.5" fill="#3B82F6"/>
-            </g>
-            <!-- Pulse rings on center -->
-            <circle cx="250" cy="200" r="72" fill="none" stroke="#06B6D4" stroke-width="0.6" opacity="0">
-              <animate attributeName="r" values="72;120" dur="3s" repeatCount="indefinite"/>
-              <animate attributeName="opacity" values="0.4;0" dur="3s" repeatCount="indefinite"/>
-            </circle>
-            <circle cx="250" cy="200" r="72" fill="none" stroke="#3B82F6" stroke-width="0.6" opacity="0">
-              <animate attributeName="r" values="72;120" dur="3s" begin="1.5s" repeatCount="indefinite"/>
-              <animate attributeName="opacity" values="0.3;0" dur="3s" begin="1.5s" repeatCount="indefinite"/>
-            </circle>
           </svg>
         </div>
       </div>
     </div>
   </header>
 
-  <!-- Features Section -->
-  <section class="features" id="features">
+  <!-- About Section -->
+  <section class="about-section" id="about">
     <div class="container">
-      <div class="features-header reveal">
-        <p class="section-label">Platform Capabilities</p>
-        <h2 class="section-title">Everything You Need to Ship at Scale</h2>
-        <p class="section-desc">A unified infrastructure layer that handles deployment, networking, security, and observability so your team can focus on building products.</p>
+      <div class="about-header reveal">
+        <p class="section-label">Foundation</p>
+        <h2 class="section-title">What this is — and what it isn't.</h2>
+        <p class="section-desc">We built WBBX to eliminate the friction of deploying and tracking our internal tools, services, and private experiments.</p>
+      </div>
+      <div class="about-grid">
+        <div class="about-card reveal">
+          <svg class="about-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+          </svg>
+          <h3>No public access</h3>
+          <p>There are no sign-ups, no public APIs, and no external-facing services. Every layer of this infrastructure is closed by default.</p>
+        </div>
+        <div class="about-card reveal">
+          <svg class="about-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <circle cx="12" cy="12" r="3"></circle>
+          </svg>
+          <h3>Single reference point</h3>
+          <p>One unified place to track, deploy, and manage every web application — completely replacing scattered scripts and disparate cloud consoles.</p>
+        </div>
+        <div class="about-card reveal">
+          <svg class="about-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+          </svg>
+          <h3>Zero commercial intent</h3>
+          <p>This page exists for transparency and identity only. There is nothing to buy, subscribe to, or request access to here.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Architecture Section -->
+  <section class="architecture" id="architecture">
+    <div class="container">
+      <div class="arch-header reveal">
+        <p class="section-label">Capabilities</p>
+        <h2 class="section-title">System Architecture</h2>
+        <p class="section-desc">A highly specialized layer that handles our private networking, compute provisioning, and continuous deployment workflows.</p>
       </div>
       <div class="features-grid">
-        <!-- Feature 1: Cloud Hosting -->
         <article class="feature-card reveal">
           <div class="feature-icon">
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="url(#featIconGrad1)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <defs><linearGradient id="featIconGrad1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#06B6D4"/><stop offset="100%" stop-color="#3B82F6"/></linearGradient></defs>
-              <path d="M6 19a4 4 0 01-.88-7.9A5.5 5.5 0 0115.9 6 4.5 4.5 0 0119 13.5a3.5 3.5 0 01-1 6.5H6z"/>
-            </svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h4M4 16h4M16 8h4M16 16h4"/><path d="M8 8l4-4 4 4M8 16l4 4 4-4"/><line x1="12" y1="4" x2="12" y2="20"/></svg>
           </div>
-          <h3>Cloud Hosting</h3>
-          <p>Deploy to 40+ global regions with zero-config provisioning. Auto-scaling compute instances that adapt to traffic in real time.</p>
+          <h3>Internal Gateway</h3>
+          <p>Unified ingress routing for all internal subdomains with automated SSL termination and strict IP whitelisting.</p>
         </article>
-
-        <!-- Feature 2: Edge Computing -->
         <article class="feature-card reveal">
           <div class="feature-icon">
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="url(#featIconGrad1)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="2"/>
-              <circle cx="6" cy="6" r="1.5"/>
-              <circle cx="18" cy="6" r="1.5"/>
-              <circle cx="6" cy="18" r="1.5"/>
-              <circle cx="18" cy="18" r="1.5"/>
-              <line x1="10.5" y1="10.5" x2="7.2" y2="7.2"/>
-              <line x1="13.5" y1="10.5" x2="16.8" y2="7.2"/>
-              <line x1="10.5" y1="13.5" x2="7.2" y2="16.8"/>
-              <line x1="13.5" y1="13.5" x2="16.8" y2="16.8"/>
-            </svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
           </div>
-          <h3>Edge Computing</h3>
-          <p>Execute serverless functions at the edge with sub-millisecond cold starts. Your code runs within 50ms of every user on the planet.</p>
+          <h3>Isolated Environments</h3>
+          <p>Containerized workloads running in strict isolation. Production, staging, and ephemeral preview branches.</p>
         </article>
-
-        <!-- Feature 3: Secure Architecture -->
         <article class="feature-card reveal">
           <div class="feature-icon">
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="url(#featIconGrad1)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 2L4 6v6c0 5.25 3.4 10.15 8 11.2C16.6 22.15 20 17.25 20 12V6L12 2z"/>
-              <rect x="9.5" y="11" width="5" height="4" rx="0.5"/>
-              <path d="M10.5 11V9.5a1.5 1.5 0 013 0V11"/>
-            </svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12h-4"/></svg>
           </div>
-          <h3>Secure Architecture</h3>
-          <p>SOC 2 Type II compliant with end-to-end encryption, DDoS mitigation, and automated vulnerability scanning on every deployment.</p>
-        </article>
-
-        <!-- Feature 4: API Gateway -->
-        <article class="feature-card reveal">
-          <div class="feature-icon">
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="url(#featIconGrad1)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M4 8h4M4 16h4M16 8h4M16 16h4"/>
-              <path d="M8 8l4-4 4 4M8 16l4 4 4-4"/>
-              <line x1="12" y1="4" x2="12" y2="20"/>
-            </svg>
-          </div>
-          <h3>API Gateway</h3>
-          <p>Unified ingress with rate limiting, request transformation, and intelligent routing. Manage 100K+ requests per second effortlessly.</p>
-        </article>
-
-        <!-- Feature 5: Scalable Storage -->
-        <article class="feature-card reveal">
-          <div class="feature-icon">
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="url(#featIconGrad1)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <ellipse cx="12" cy="6" rx="8" ry="3"/>
-              <path d="M4 6v4c0 1.66 3.58 3 8 3s8-1.34 8-3V6"/>
-              <path d="M4 10v4c0 1.66 3.58 3 8 3s8-1.34 8-3V10"/>
-              <path d="M4 14v4c0 1.66 3.58 3 8 3s8-1.34 8-3V14"/>
-            </svg>
-          </div>
-          <h3>Scalable Storage</h3>
-          <p>S3-compatible object storage with built-in CDN integration. Automatic tiering moves cold data to cost-optimized backends transparently.</p>
-        </article>
-
-        <!-- Feature 6: DevOps Pipeline -->
-        <article class="feature-card reveal">
-          <div class="feature-icon">
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="url(#featIconGrad1)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="7" cy="12" r="3"/>
-              <circle cx="17" cy="12" r="3"/>
-              <path d="M10 12h4"/>
-              <path d="M7 9V4h10v5"/>
-              <path d="M7 15v5h10v-5"/>
-            </svg>
-          </div>
-          <h3>DevOps Pipeline</h3>
-          <p>Git-push deployments with built-in CI/CD, preview environments, and rollback capabilities. From commit to production in under 30 seconds.</p>
+          <h3>Automated Workflows</h3>
+          <p>Direct Git integration triggering immutable builds. No manual server configuration required post-commit.</p>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- Under the Hood / Metrics -->
-  <section class="metrics" id="metrics">
-    <div class="container">
-      <div class="metrics-inner reveal">
-        <div class="metrics-bg-glow"></div>
-        <div class="metrics-header">
-          <p class="section-label">Under the Hood</p>
-          <h2 class="section-title">Performance That Speaks for Itself</h2>
-          <p class="section-desc">Every millisecond matters. Our infrastructure is purpose-built for workloads where latency and reliability are non-negotiable.</p>
+  <!-- Scale / Metrics -->
+  <section class="metrics">
+    <div class="container reveal">
+      <div class="metrics-inner">
+        <div class="metric-item">
+          <div class="metric-value gradient-text">100<span style="font-size: 0.6em">%</span></div>
+          <div class="metric-label">Private Topology</div>
         </div>
-        <div class="metrics-grid">
-          <div class="metric-item">
-            <div class="metric-value gradient-text"><span class="counter" data-target="99.99">0</span><span class="metric-unit">%</span></div>
-            <div class="metric-label">Guaranteed Uptime</div>
-            <div class="metric-sub">Backed by enterprise SLA with credit guarantees</div>
-          </div>
-          <div class="metric-item">
-            <div class="metric-value gradient-text">&lt;<span class="counter" data-target="10">0</span><span class="metric-unit">ms</span></div>
-            <div class="metric-label">Global P95 Latency</div>
-            <div class="metric-sub">Edge-to-origin response across all regions</div>
-          </div>
-          <div class="metric-item">
-            <div class="metric-value gradient-text"><span class="counter" data-target="100">0</span><span class="metric-unit">K+</span></div>
-            <div class="metric-label">Requests Per Second</div>
-            <div class="metric-sub">Per-project throughput with horizontal auto-scale</div>
-          </div>
+        <div class="metric-item">
+          <div class="metric-value gradient-text">0</div>
+          <div class="metric-label">Public Endpoints</div>
+        </div>
+        <div class="metric-item">
+          <div class="metric-value gradient-text">1</div>
+          <div class="metric-label">Unified Platform</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Code / Integration Preview -->
-  <section class="code-section" id="docs">
+  <!-- Code / Terminal Preview -->
+  <section class="code-section" id="terminal">
     <div class="container">
       <div class="code-layout">
         <div class="code-content reveal">
-          <p class="section-label">Developer Experience</p>
-          <h2 class="section-title">Ship in Seconds, Not Hours</h2>
-          <p class="section-desc">One command is all it takes. Our CLI handles provisioning, building, deploying, and routing with zero configuration required.</p>
-          <ul class="code-checklist">
-            <li>
-              <svg viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="9" cy="9" r="8" stroke="#06B6D4" stroke-width="1.5"/><path d="M5.5 9.5L7.5 11.5L12.5 6.5" stroke="#06B6D4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              Zero-config deployments from any Git repository
-            </li>
-            <li>
-              <svg viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="9" cy="9" r="8" stroke="#06B6D4" stroke-width="1.5"/><path d="M5.5 9.5L7.5 11.5L12.5 6.5" stroke="#06B6D4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              Automatic SSL, custom domains, and DNS management
-            </li>
-            <li>
-              <svg viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="9" cy="9" r="8" stroke="#06B6D4" stroke-width="1.5"/><path d="M5.5 9.5L7.5 11.5L12.5 6.5" stroke="#06B6D4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              Instant rollbacks and preview environments
-            </li>
-            <li>
-              <svg viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="9" cy="9" r="8" stroke="#06B6D4" stroke-width="1.5"/><path d="M5.5 9.5L7.5 11.5L12.5 6.5" stroke="#06B6D4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              First-class TypeScript and Docker support
-            </li>
-          </ul>
+          <p class="section-label">Administration</p>
+          <h2 class="section-title">CLI-Driven Operations</h2>
+          <p class="section-desc">The entire infrastructure is managed via a custom CLI, allowing founders to provision new services, inspect logs, and manage secrets without leaving the terminal.</p>
         </div>
         <div class="terminal-window reveal">
           <div class="terminal-bar">
             <span class="terminal-dot red"></span>
             <span class="terminal-dot yellow"></span>
             <span class="terminal-dot green"></span>
-            <span class="terminal-title">wbbx-cli v3.2.1 — deploy</span>
+            <span class="terminal-title">admin@wbbx-core:~</span>
           </div>
           <div class="terminal-body">
-            <div><span class="prompt">$</span> <span class="cmd">wbbx deploy</span> <span class="flag">--region</span> <span class="string">global</span> <span class="flag">--scale</span> <span class="string">auto</span></div>
-            <div style="margin-top:8px;"><span class="comment"># Detecting framework...</span></div>
-            <div><span class="comment"># Found: next.js @ 14.1.0</span></div>
-            <div style="margin-top:8px;"><span class="comment"># Building project...</span></div>
-            <div>  <span class="key">Optimizer</span>  <span class="val">Tree-shaking enabled</span></div>
-            <div>  <span class="key">Bundler</span>    <span class="val">esbuild @ 0.20.0</span></div>
-            <div>  <span class="key">Output</span>     <span class="val">2.4 MB (gzip: 780 KB)</span></div>
-            <div style="margin-top:8px;"><span class="comment"># Deploying to 40 edge regions...</span></div>
-            <div>  <span class="bracket">[</span><span class="val">=========================</span><span class="bracket">]</span> <span class="val">100%</span></div>
-            <div style="margin-top:8px;"><span class="comment"># Provisioning resources...</span></div>
-            <div>  <span class="key">SSL</span>        <span class="val">active (Let's Encrypt)</span></div>
-            <div>  <span class="key">CDN</span>        <span class="val">enabled (40 PoP)</span></div>
-            <div>  <span class="key">DNS</span>        <span class="val">propagated</span></div>
-            <div style="margin-top:8px;"><span style="color:#10B981;">Deployment live</span> <span class="bracket">—</span> <span class="string">https://app.wbbx.dev</span></div>
-            <div>  <span class="comment">Latency P95: 8ms  |  Cold start: 4ms</span></div>
+            <div><span class="prompt">$</span> <span class="cmd">wbbx-admin deploy</span> <span class="flag">--env</span><span class="string">=production</span> <span class="flag">--target</span><span class="string">=internal-api</span></div>
+            <div style="margin-top:8px;"><span class="comment"># Authenticating with hardware key...</span></div>
+            <div><span class="comment"># Authorized. Context: founder_root</span></div>
+            <div style="margin-top:8px;"><span class="comment"># Fetching artifacts...</span></div>
+            <div>  <span class="key">Source</span>   <span class="val">git.internal/backend/api (HEAD -> main)</span></div>
+            <div>  <span class="key">Builder</span>  <span class="val">docker-buildx @ cluster-alpha</span></div>
+            <div style="margin-top:8px;"><span class="comment"># Rolling deployment strategy...</span></div>
+            <div>  <span class="bracket">[</span><span class="val">#########################</span><span class="bracket">]</span> <span class="val">100%</span></div>
+            <div style="margin-top:8px;"><span class="key">Status:</span> <span style="color:#10B981;">Deployed successfully.</span></div>
+            <div><span class="key">Route:</span>  <span class="string">https://api.wbbx.internal</span></div>
             <div style="margin-top:8px;"><span class="prompt">$</span> <span class="terminal-cursor"></span></div>
           </div>
         </div>
@@ -1405,123 +966,57 @@
     </div>
   </section>
 
-  <!-- Pricing Section -->
-  <section class="pricing" id="pricing">
+  <!-- Identity Section -->
+  <section class="identity-section" id="identity">
     <div class="container">
-      <div class="pricing-header reveal">
-        <p class="section-label">Simple Pricing</p>
-        <h2 class="section-title">Scale Without Surprises</h2>
-        <p class="section-desc">Transparent, predictable pricing with no hidden egress fees. Start free, upgrade when you are ready.</p>
+      <div class="arch-header reveal">
+        <p class="section-label">Brand</p>
+        <h2 class="section-title">Visual Identity</h2>
+        <p class="section-desc">Design principles for internal WBBX tools, ensuring a consistent, low-fatigue experience for the administrative console.</p>
       </div>
-      <div class="pricing-grid">
-        <!-- Starter -->
-        <article class="pricing-card reveal">
-          <h3>Starter</h3>
-          <p class="price-desc">For side projects and MVPs</p>
-          <div class="price">
-            <span class="currency">$</span>
-            <span class="amount">0</span>
-            <span class="period">/month</span>
+      <div class="identity-layout reveal">
+        <div class="identity-colors">
+          <div class="color-swatch">
+            <div class="color-box" style="background: #06B6D4;"></div>
+            <div class="color-info">
+              <h4>Primary Cyan</h4>
+              <p>HEX #06B6D4 | Active States</p>
+            </div>
           </div>
-          <p class="price-desc">Up to 100K requests</p>
-          <div class="divider"></div>
-          <ul class="pricing-features">
-            <li>
-              <svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#06B6D4" stroke-width="1.2"/><path d="M5 8.5L7 10.5L11 5.5" stroke="#06B6D4" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              3 projects
-            </li>
-            <li>
-              <svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#06B6D4" stroke-width="1.2"/><path d="M5 8.5L7 10.5L11 5.5" stroke="#06B6D4" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              Shared compute
-            </li>
-            <li>
-              <svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#06B6D4" stroke-width="1.2"/><path d="M5 8.5L7 10.5L11 5.5" stroke="#06B6D4" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              Automatic SSL
-            </li>
-            <li>
-              <svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#06B6D4" stroke-width="1.2"/><path d="M5 8.5L7 10.5L11 5.5" stroke="#06B6D4" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              Community support
-            </li>
-            <li class="disabled">
-              <svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#64748B" stroke-width="1.2"/><line x1="5" y1="8" x2="11" y2="8" stroke="#64748B" stroke-width="1.2" stroke-linecap="round"/></svg>
-              Custom domains
-            </li>
-          </ul>
-          <a href="#" class="btn btn-secondary">Start Free</a>
-        </article>
+          <div class="color-swatch">
+            <div class="color-box" style="background: #3B82F6;"></div>
+            <div class="color-info">
+              <h4>System Blue</h4>
+              <p>HEX #3B82F6 | Interactions</p>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-box" style="background: #0B1120;"></div>
+            <div class="color-info">
+              <h4>Deep Slate</h4>
+              <p>HEX #0B1120 | Base Background</p>
+            </div>
+          </div>
+        </div>
+        <div class="identity-typography">
+          <p style="font-family: var(--font-heading); color: var(--text-label); font-size: 12px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 24px;">Typography</p>
+          <div class="type-sample-1">Montserrat</div>
+          <p class="type-sample-2" style="margin-bottom: 32px;">Used exclusively for headings, brand elements, and numerical data points. Weights: 500, 600, 800.</p>
+          
+          <div class="type-sample-1" style="font-family: var(--font-body); font-weight: 500;">Inter</div>
+          <p class="type-sample-2">The system body typeface. Optimized for high legibility in dense administrative interfaces and log streams. Weights: 300, 400, 500.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        <!-- Pro (Featured) -->
-        <article class="pricing-card featured reveal">
-          <span class="pricing-badge">Most Popular</span>
-          <h3>Pro</h3>
-          <p class="price-desc">For production workloads</p>
-          <div class="price">
-            <span class="currency">$</span>
-            <span class="amount">49</span>
-            <span class="period">/month</span>
-          </div>
-          <p class="price-desc">Up to 10M requests included</p>
-          <div class="divider"></div>
-          <ul class="pricing-features">
-            <li>
-              <svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#06B6D4" stroke-width="1.2"/><path d="M5 8.5L7 10.5L11 5.5" stroke="#06B6D4" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              Unlimited projects
-            </li>
-            <li>
-              <svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#06B6D4" stroke-width="1.2"/><path d="M5 8.5L7 10.5L11 5.5" stroke="#06B6D4" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              Dedicated compute (2 vCPU / 4GB)
-            </li>
-            <li>
-              <svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#06B6D4" stroke-width="1.2"/><path d="M5 8.5L7 10.5L11 5.5" stroke="#06B6D4" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              Custom domains and SSL
-            </li>
-            <li>
-              <svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#06B6D4" stroke-width="1.2"/><path d="M5 8.5L7 10.5L11 5.5" stroke="#06B6D4" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              Edge functions (100K invocations)
-            </li>
-            <li>
-              <svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#06B6D4" stroke-width="1.2"/><path d="M5 8.5L7 10.5L11 5.5" stroke="#06B6D4" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              Priority email support
-            </li>
-          </ul>
-          <a href="#" class="btn btn-primary">Deploy Now</a>
-        </article>
-
-        <!-- Enterprise -->
-        <article class="pricing-card reveal">
-          <h3>Enterprise</h3>
-          <p class="price-desc">For mission-critical systems</p>
-          <div class="price">
-            <span class="currency">$</span>
-            <span class="amount">299</span>
-            <span class="period">/month</span>
-          </div>
-          <p class="price-desc">Unlimited requests, unlimited scale</p>
-          <div class="divider"></div>
-          <ul class="pricing-features">
-            <li>
-              <svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#06B6D4" stroke-width="1.2"/><path d="M5 8.5L7 10.5L11 5.5" stroke="#06B6D4" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              Everything in Pro
-            </li>
-            <li>
-              <svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#06B6D4" stroke-width="1.2"/><path d="M5 8.5L7 10.5L11 5.5" stroke="#06B6D4" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              Dedicated instances (8 vCPU / 32GB)
-            </li>
-            <li>
-              <svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#06B6D4" stroke-width="1.2"/><path d="M5 8.5L7 10.5L11 5.5" stroke="#06B6D4" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              SOC 2 compliance reports
-            </li>
-            <li>
-              <svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#06B6D4" stroke-width="1.2"/><path d="M5 8.5L7 10.5L11 5.5" stroke="#06B6D4" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              99.99% SLA guarantee
-            </li>
-            <li>
-              <svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#06B6D4" stroke-width="1.2"/><path d="M5 8.5L7 10.5L11 5.5" stroke="#06B6D4" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              Dedicated account engineer
-            </li>
-          </ul>
-          <a href="#" class="btn btn-secondary">Contact Sales</a>
-        </article>
+  <!-- Contact Section -->
+  <section class="contact-section" id="contact">
+    <div class="container reveal">
+      <div class="contact-box">
+        <h2>Direct Inquiries</h2>
+        <p>This system is closed to the public. If you are a security researcher reporting a vulnerability, or have a legal inquiry regarding the network, please use the secure channel.</p>
+        <a href="mailto:hostmaster@wbbx.de" class="btn btn-primary">Contact Hostmaster</a>
       </div>
     </div>
   </section>
@@ -1529,63 +1024,23 @@
   <!-- Footer -->
   <footer class="footer">
     <div class="container">
-      <div class="footer-grid">
+      <div class="footer-inner">
         <div class="footer-brand">
-          <!-- Standalone WBBX icon (just the <g> from logo, scaled) -->
-          <svg width="40" height="40" viewBox="0 0 108 108" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="fBoxBg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#1E293B"/><stop offset="100%" stop-color="#0F172A"/></linearGradient>
-              <linearGradient id="fBoxBorder" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#06B6D4"/><stop offset="100%" stop-color="#3B82F6"/></linearGradient>
-              <linearGradient id="fGradFront" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#06B6D4"/><stop offset="100%" stop-color="#3B82F6"/></linearGradient>
-              <linearGradient id="fGradBack" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#2563EB"/><stop offset="100%" stop-color="#0369A1"/></linearGradient>
-              <filter id="fShadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="3" dy="2" stdDeviation="3" flood-color="#000000" flood-opacity="0.6"/></filter>
-            </defs>
-            <rect x="1" y="1" width="106" height="106" rx="24" fill="url(#fBoxBg)" stroke="url(#fBoxBorder)" stroke-width="2"/>
-            <circle cx="86" cy="94" r="2.5" fill="#06B6D4"/>
-            <circle cx="94" cy="94" r="2.5" fill="#3B82F6"/>
-            <g stroke="url(#fBoxBorder)" stroke-width="1.5" stroke-linejoin="round">
-              <polygon points="82,19 98,19 82,89 66,89" fill="url(#fGradBack)"/>
-              <polygon points="46,39 62,39 46,89 30,89" fill="url(#fGradBack)"/>
-              <polygon points="46,39 62,39 82,89 66,89" fill="url(#fGradFront)" filter="url(#fShadow)"/>
-              <polygon points="10,19 26,19 46,89 30,89" fill="url(#fGradFront)" filter="url(#fShadow)"/>
+          <!-- Scaled down, muted version of the logo -->
+          <svg viewBox="0 0 108 108" xmlns="http://www.w3.org/2000/svg">
+            <rect x="1" y="1" width="106" height="106" rx="24" fill="#141E33" stroke="#64748B" stroke-width="2"/>
+            <circle cx="86" cy="94" r="2.5" fill="#64748B" />
+            <circle cx="94" cy="94" r="2.5" fill="#64748B" />
+            <g stroke="#64748B" stroke-width="1.5" stroke-linejoin="round" fill="none">
+              <polygon points="82,19 98,19 82,89 66,89" />
+              <polygon points="46,39 62,39 46,89 30,89" />
+              <polygon points="46,39 62,39 82,89 66,89" />
+              <polygon points="10,19 26,19 46,89 30,89" />
             </g>
           </svg>
-          <p>Next-generation infrastructure for teams that ship fast. Built for performance, designed for scale.</p>
         </div>
-        <div class="footer-col">
-          <h4>Product</h4>
-          <ul>
-            <li><a href="#features">Cloud Hosting</a></li>
-            <li><a href="#features">Edge Computing</a></li>
-            <li><a href="#features">API Gateway</a></li>
-            <li><a href="#pricing">Pricing</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Resources</h4>
-          <ul>
-            <li><a href="#docs">Documentation</a></li>
-            <li><a href="#docs">API Reference</a></li>
-            <li><a href="#docs">CLI Guide</a></li>
-            <li><a href="#docs">Status Page</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Company</h4>
-          <ul>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Blog</a></li>
-            <li><a href="#">Careers</a></li>
-            <li><a href="#">Contact</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>2025 WBBX Inc. All rights reserved.</p>
-        <div class="footer-bottom-links">
-          <a href="#">Privacy Policy</a>
-          <a href="#">Terms of Service</a>
-          <a href="#">Security</a>
+        <div class="footer-text">
+          &copy; 2026 WBBX. Private Infrastructure. All rights reserved.
         </div>
       </div>
     </div>
@@ -1594,18 +1049,14 @@
   <script>
     // ===== Navbar scroll effect =====
     const navbar = document.querySelector('.navbar');
-    let lastScroll = 0;
-
+    
     function handleNavbarScroll() {
-      const currentScroll = window.scrollY;
-      if (currentScroll > 40) {
+      if (window.scrollY > 40) {
         navbar.classList.add('scrolled');
       } else {
         navbar.classList.remove('scrolled');
       }
-      lastScroll = currentScroll;
     }
-
     window.addEventListener('scroll', handleNavbarScroll, { passive: true });
 
     // ===== Mobile menu toggle =====
@@ -1617,7 +1068,6 @@
       mobileMenu.classList.toggle('open');
       this.setAttribute('aria-expanded', !isOpen);
 
-      // Switch hamburger to X icon
       if (!isOpen) {
         this.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>';
       } else {
@@ -1634,17 +1084,9 @@
     // ===== Scroll reveal with IntersectionObserver =====
     const revealElements = document.querySelectorAll('.reveal');
     const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry, index) => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          // Stagger animation for grid children
-          const parent = entry.target.parentElement;
-          const siblings = parent ? Array.from(parent.querySelectorAll('.reveal')) : [];
-          const idx = siblings.indexOf(entry.target);
-
-          setTimeout(() => {
-            entry.target.classList.add('visible');
-          }, idx > 0 ? idx * 100 : 0);
-
+          entry.target.classList.add('visible');
           revealObserver.unobserve(entry.target);
         }
       });
@@ -1655,64 +1097,7 @@
 
     revealElements.forEach(el => revealObserver.observe(el));
 
-    // ===== Counter animation =====
-    const counters = document.querySelectorAll('.counter');
-    let countersAnimated = false;
-
-    const counterObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting && !countersAnimated) {
-          countersAnimated = true;
-          animateCounters();
-          counterObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.3 });
-
-    // Observe the metrics section
-    const metricsSection = document.getElementById('metrics');
-    if (metricsSection) {
-      counterObserver.observe(metricsSection);
-    }
-
-    function animateCounters() {
-      counters.forEach(counter => {
-        const target = parseFloat(counter.getAttribute('data-target'));
-        const isDecimal = target % 1 !== 0;
-        const duration = 2000;
-        const startTime = performance.now();
-
-        function updateCounter(currentTime) {
-          const elapsed = currentTime - startTime;
-          const progress = Math.min(elapsed / duration, 1);
-
-          // Ease-out cubic
-          const eased = 1 - Math.pow(1 - progress, 3);
-          const current = target * eased;
-
-          if (isDecimal) {
-            counter.textContent = current.toFixed(2);
-          } else {
-            counter.textContent = Math.round(current);
-          }
-
-          if (progress < 1) {
-            requestAnimationFrame(updateCounter);
-          } else {
-            // Ensure final value is exact
-            if (isDecimal) {
-              counter.textContent = target.toFixed(2);
-            } else {
-              counter.textContent = target;
-            }
-          }
-        }
-
-        requestAnimationFrame(updateCounter);
-      });
-    }
-
-    // ===== Floating particles =====
+    // ===== Floating particles (Slower/Subtle for professional look) =====
     const particlesContainer = document.getElementById('particles');
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
@@ -1720,13 +1105,11 @@
       function createParticle() {
         const particle = document.createElement('div');
         particle.classList.add('particle');
-
-        // Random position and properties
         const x = Math.random() * 100;
-        const size = Math.random() * 2 + 1;
-        const duration = Math.random() * 15 + 10;
+        const size = Math.random() * 2 + 0.5;
+        const duration = Math.random() * 20 + 15; // Slower
         const delay = Math.random() * 10;
-        const opacity = Math.random() * 0.3 + 0.1;
+        const opacity = Math.random() * 0.15 + 0.05; // Lower opacity
 
         particle.style.left = x + '%';
         particle.style.bottom = '-10px';
@@ -1736,24 +1119,21 @@
         particle.style.animationDuration = duration + 's';
         particle.style.animationDelay = delay + 's';
 
-        // Alternate between cyan and blue particles
         if (Math.random() > 0.5) {
           particle.style.background = '#3B82F6';
         }
 
         particlesContainer.appendChild(particle);
 
-        // Remove particle after animation completes to avoid memory buildup
         setTimeout(() => {
           if (particle.parentNode) {
             particle.parentNode.removeChild(particle);
           }
-          createParticle(); // Create a replacement
+          createParticle();
         }, (duration + delay) * 1000);
       }
 
-      // Spawn initial batch of particles
-      for (let i = 0; i < 18; i++) {
+      for (let i = 0; i < 12; i++) { // Fewer particles
         createParticle();
       }
     }
@@ -1782,7 +1162,7 @@
     const navLinks = document.querySelectorAll('.nav-links a');
 
     function highlightNavOnScroll() {
-      const scrollPos = window.scrollY + 100;
+      const scrollPos = window.scrollY + 150;
 
       sections.forEach(section => {
         const sectionTop = section.offsetTop;
@@ -1791,9 +1171,9 @@
 
         if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
           navLinks.forEach(link => {
-            link.style.color = '';
+            link.classList.remove('active');
             if (link.getAttribute('href') === '#' + sectionId) {
-              link.style.color = '#F1F5F9';
+              link.classList.add('active');
             }
           });
         }
