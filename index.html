@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WBBX Brand Identity</title>
+    <!-- Import modern, bold sans-serif font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #0F172A;
+            --text-color: #F1F5F9;
+            --label-color: #64748B;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Montserrat', system-ui, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            gap: 80px;
+        }
+
+        .section-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 24px;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .section-label {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--label-color);
+            font-weight: 800;
+        }
+
+        /* Container constraints as requested */
+        .icon-container {
+            width: 150px;
+            height: 150px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo-container {
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        svg {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- SECTION 1: STANDALONE ICON -->
+    <div class="section-wrapper">
+        <div class="section-label">Standalone Icon</div>
+        <div class="icon-container">
+            <svg class="icon" viewBox="0 0 108 108" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <!-- Deep Box Inner Glow -->
+                    <linearGradient id="boxBg-icon" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#1E293B" />
+                        <stop offset="100%" stop-color="#0F172A" />
+                    </linearGradient>
+                    
+                    <!-- Cyan to Blue Border -->
+                    <linearGradient id="boxBorder-icon" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#06B6D4" />
+                        <stop offset="100%" stop-color="#3B82F6" />
+                    </linearGradient>
+
+                    <!-- Bright Front Blade Gradient -->
+                    <linearGradient id="gradFront-icon" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#06B6D4" />
+                        <stop offset="100%" stop-color="#3B82F6" />
+                    </linearGradient>
+
+                    <!-- Deep Back Blade Gradient for 3D Depth -->
+                    <linearGradient id="gradBack-icon" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#2563EB" />
+                        <stop offset="100%" stop-color="#0369A1" />
+                    </linearGradient>
+
+                    <!-- 3D Shadow for Overlapping Server Blades -->
+                    <filter id="shadow-icon" x="-20%" y="-20%" width="140%" height="140%">
+                        <feDropShadow dx="3" dy="2" stdDeviation="3" flood-color="#000000" flood-opacity="0.6" />
+                    </filter>
+                </defs>
+
+                <!-- Outer "Web Box" Container -->
+                <rect x="1" y="1" width="106" height="106" rx="24" fill="url(#boxBg-icon)" stroke="url(#boxBorder-icon)" stroke-width="2"/>
+                
+                <!-- Server/Hardware Status Lights -->
+                <circle cx="86" cy="94" r="2.5" fill="#06B6D4" />
+                <circle cx="94" cy="94" r="2.5" fill="#3B82F6" />
+
+                <!-- Interlocking 'W' Server Blades -->
+                <g stroke="url(#boxBorder-icon)" stroke-width="1.5" stroke-linejoin="round">
+                    <!-- Blade 4 (Back Right) -->
+                    <polygon points="82,19 98,19 82,89 66,89" fill="url(#gradBack-icon)" />
+                    <!-- Blade 2 (Back Center-Left) -->
+                    <polygon points="46,39 62,39 46,89 30,89" fill="url(#gradBack-icon)" />
+                    <!-- Blade 3 (Front Center-Right) -->
+                    <polygon points="46,39 62,39 82,89 66,89" fill="url(#gradFront-icon)" filter="url(#shadow-icon)" />
+                    <!-- Blade 1 (Front Left) -->
+                    <polygon points="10,19 26,19 46,89 30,89" fill="url(#gradFront-icon)" filter="url(#shadow-icon)" />
+                </g>
+            </svg>
+        </div>
+    </div>
+
+    <!-- SECTION 2: FULL LOGO LOCKUP -->
+    <div class="section-wrapper">
+        <div class="section-label">Full Logo Lockup</div>
+        <div class="logo-container">
+            <!-- Combined SVG for perfect lockup scalability (ViewBox widens to 320 to fit text) -->
+            <svg class="full-logo" viewBox="0 0 400 108" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="boxBg-logo" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#1E293B" />
+                        <stop offset="100%" stop-color="#0F172A" />
+                    </linearGradient>
+                    <linearGradient id="boxBorder-logo" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#06B6D4" />
+                        <stop offset="100%" stop-color="#3B82F6" />
+                    </linearGradient>
+                    <linearGradient id="gradFront-logo" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#06B6D4" />
+                        <stop offset="100%" stop-color="#3B82F6" />
+                    </linearGradient>
+                    <linearGradient id="gradBack-logo" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#2563EB" />
+                        <stop offset="100%" stop-color="#0369A1" />
+                    </linearGradient>
+                    <filter id="shadow-logo" x="-20%" y="-20%" width="140%" height="140%">
+                        <feDropShadow dx="3" dy="2" stdDeviation="3" flood-color="#000000" flood-opacity="0.6" />
+                    </filter>
+                </defs>
+
+                <!-- Icon Group (Positioned at X=0) -->
+                <g>
+                    <rect x="1" y="1" width="106" height="106" rx="24" fill="url(#boxBg-logo)" stroke="url(#boxBorder-logo)" stroke-width="2"/>
+                    <circle cx="86" cy="94" r="2.5" fill="#06B6D4" />
+                    <circle cx="94" cy="94" r="2.5" fill="#3B82F6" />
+                    <g stroke="url(#boxBorder-logo)" stroke-width="1.5" stroke-linejoin="round">
+                        <polygon points="82,19 98,19 82,89 66,89" fill="url(#gradBack-logo)" />
+                        <polygon points="46,39 62,39 46,89 30,89" fill="url(#gradBack-logo)" />
+                        <polygon points="46,39 62,39 82,89 66,89" fill="url(#gradFront-logo)" filter="url(#shadow-logo)" />
+                        <polygon points="10,19 26,19 46,89 30,89" fill="url(#gradFront-logo)" filter="url(#shadow-logo)" />
+                    </g>
+                </g>
+
+                <!-- Wordmark (Completes "W" + "WBBX") -->
+                <!-- x=130 provides clean breathing room from the box (width=108) -->
+                <text x="130" y="56" font-family="'Montserrat', system-ui, sans-serif" font-weight="800" font-size="72" fill="#FFFFFF" letter-spacing="4" dominant-baseline="central">WBBX</text>
+            </svg>
+        </div>
+    </div>
+
+</body>
+</html>
