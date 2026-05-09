@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>WBBX — Private Web Infrastructure</title>
+  <title>WBBX — Private Web Application Infrastructure</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@400;500;600;800&display=swap" rel="stylesheet">
@@ -16,7 +16,7 @@
     }
 
     :root {
-      --bg-dark: #0B1120; /* Slightly darker for a more professional feel */
+      --bg-dark: #0B1120; /* Deep, professional slate */
       --bg-card: #141E33;
       --bg-glass: rgba(20, 30, 51, 0.7);
       --text-main: #F8FAFC;
@@ -96,8 +96,8 @@
       font-weight: 300;
       font-size: 17px;
       color: var(--text-muted);
-      max-width: 640px;
-      line-height: 1.8;
+      max-width: 600px;
+      line-height: 1.7;
     }
 
     /* ===== Buttons ===== */
@@ -139,11 +139,6 @@
     .btn-secondary:hover {
       border-color: var(--primary-cyan);
       background: rgba(6, 182, 212, 0.05);
-    }
-
-    .btn-sm {
-      padding: 10px 20px;
-      font-size: 13px;
     }
 
     /* ===== Navbar ===== */
@@ -192,10 +187,26 @@
       text-decoration: none;
       transition: var(--transition);
       letter-spacing: 0.5px;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--gradient-brand);
+      transition: var(--transition);
     }
 
     .nav-links a:hover, .nav-links a.active {
       color: var(--text-main);
+    }
+
+    .nav-links a.active::after {
+      width: 100%;
     }
 
     .nav-cta {
@@ -216,10 +227,14 @@
       text-transform: uppercase;
       letter-spacing: 1px;
       transition: var(--transition);
+      padding: 8px 16px;
+      border-radius: 6px;
+      background: rgba(148, 163, 184, 0.05);
     }
 
     .admin-lock:hover {
       color: var(--primary-cyan);
+      background: rgba(6, 182, 212, 0.1);
     }
 
     .mobile-toggle {
@@ -297,13 +312,13 @@
     }
 
     .hero-content {
-      max-width: 600px;
+      max-width: 580px;
     }
 
     .hero h1 {
       font-family: var(--font-heading);
       font-weight: 800;
-      font-size: clamp(32px, 4.5vw, 54px);
+      font-size: clamp(36px, 5.5vw, 56px);
       line-height: 1.1;
       letter-spacing: -1px;
       margin-bottom: 24px;
@@ -316,7 +331,7 @@
       color: var(--text-muted);
       line-height: 1.7;
       margin-bottom: 40px;
-      max-width: 520px;
+      max-width: 480px;
     }
 
     .hero-buttons {
@@ -337,28 +352,28 @@
       height: auto;
     }
 
-    /* ===== About Section (Inspired by DNBX) ===== */
-    .about-section {
+    /* ===== Info Grid (About) ===== */
+    .info-section {
       padding: 120px 0;
       background: linear-gradient(to bottom, transparent, rgba(20, 30, 51, 0.3), transparent);
     }
 
-    .about-header {
+    .info-header {
       text-align: center;
       margin-bottom: 64px;
     }
 
-    .about-header .section-desc {
+    .info-header .section-desc {
       margin: 0 auto;
     }
 
-    .about-grid {
+    .info-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 32px;
     }
 
-    .about-card {
+    .info-card {
       background: var(--bg-card);
       border: 1px solid rgba(148, 163, 184, 0.08);
       border-radius: var(--radius-lg);
@@ -367,19 +382,30 @@
       position: relative;
     }
 
-    .about-card:hover {
+    .info-card:hover {
       border-color: rgba(6, 182, 212, 0.2);
       transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
     }
 
-    .about-icon {
-      width: 40px;
-      height: 40px;
+    .info-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: var(--gradient-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: center;
       margin-bottom: 24px;
       color: var(--primary-cyan);
     }
 
-    .about-card h3 {
+    .info-icon svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .info-card h3 {
       font-family: var(--font-heading);
       font-weight: 600;
       font-size: 18px;
@@ -387,79 +413,84 @@
       color: var(--text-main);
     }
 
-    .about-card p {
+    .info-card p {
       font-weight: 300;
       font-size: 15px;
       color: var(--text-muted);
       line-height: 1.6;
     }
 
-    /* ===== Architecture / Features ===== */
-    .architecture {
+    /* ===== Identity Section ===== */
+    .identity-section {
       padding: 120px 0;
     }
-    
-    .arch-header {
-      margin-bottom: 64px;
-      text-align: center;
-    }
 
-    .arch-header .section-desc {
-      margin: 0 auto;
-    }
-
-    .features-grid {
+    .identity-layout {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 64px;
+      align-items: center;
     }
 
-    .feature-card {
-      background: var(--bg-card);
-      border: 1px solid rgba(148, 163, 184, 0.05);
-      border-radius: var(--radius-lg);
-      padding: 36px 32px;
-      transition: var(--transition);
-      position: relative;
+    .identity-content {
+      max-width: 480px;
     }
 
-    .feature-card:hover {
-      background: rgba(30, 41, 59, 0.6);
-      border-color: rgba(6, 182, 212, 0.15);
+    .identity-content .section-desc {
+      margin-bottom: 32px;
     }
 
-    .feature-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 12px;
-      background: var(--gradient-subtle);
+    .color-palette {
       display: flex;
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .color-swatch {
+      flex: 1;
+      height: 80px;
+      border-radius: var(--radius);
+      display: flex;
+      align-items: flex-end;
+      padding: 10px;
+      font-family: 'SF Mono', monospace;
+      font-size: 12px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.9);
+      border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: inset 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .identity-showcase {
+      background: var(--bg-card);
+      border: 1px solid rgba(148, 163, 184, 0.08);
+      border-radius: var(--radius-lg);
+      padding: 64px;
+      display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      margin-bottom: 24px;
+      position: relative;
+      overflow: hidden;
     }
 
-    .feature-icon svg {
-      width: 24px;
-      height: 24px;
+    .identity-showcase::before {
+      content: '';
+      position: absolute;
+      width: 150%;
+      height: 150%;
+      background: radial-gradient(circle at center, rgba(6, 182, 212, 0.05) 0%, transparent 60%);
+      pointer-events: none;
     }
 
-    .feature-card h3 {
-      font-family: var(--font-heading);
-      font-weight: 600;
-      font-size: 16px;
-      margin-bottom: 12px;
-      letter-spacing: 0.5px;
+    .identity-showcase svg {
+      width: 100%;
+      max-width: 220px;
+      height: auto;
+      filter: drop-shadow(0 10px 25px rgba(6, 182, 212, 0.2));
     }
 
-    .feature-card p {
-      font-weight: 300;
-      font-size: 14px;
-      color: var(--text-muted);
-      line-height: 1.7;
-    }
-
-    /* ===== Scale / Metrics ===== */
+    /* ===== Metrics / Internal Stats ===== */
     .metrics {
       padding: 80px 0;
     }
@@ -468,35 +499,85 @@
       background: var(--bg-card);
       border: 1px solid rgba(148, 163, 184, 0.08);
       border-radius: var(--radius-lg);
-      padding: 64px 48px;
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 40px;
+      padding: 72px 48px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .metrics-inner::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--gradient-brand);
+    }
+
+    .metrics-header {
+      text-align: center;
+      margin-bottom: 56px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .metrics-header .section-desc {
+      margin: 0 auto;
+    }
+
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 48px;
+      position: relative;
+      z-index: 1;
     }
 
     .metric-item {
       text-align: center;
+      position: relative;
+    }
+
+    .metric-item:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      right: -24px;
+      top: 10%;
+      height: 80%;
+      width: 1px;
+      background: rgba(148, 163, 184, 0.1);
     }
 
     .metric-value {
       font-family: var(--font-heading);
       font-weight: 800;
-      font-size: clamp(32px, 5vw, 48px);
+      font-size: clamp(40px, 6vw, 64px);
       line-height: 1;
       margin-bottom: 8px;
     }
 
-    .metric-label {
-      font-weight: 500;
-      font-size: 14px;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 1px;
+    .metric-unit {
+      font-size: clamp(24px, 3vw, 36px);
+      font-weight: 600;
     }
 
-    /* ===== Internal CLI Preview ===== */
+    .metric-label {
+      font-weight: 500;
+      font-size: 15px;
+      color: var(--text-muted);
+      margin-top: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .metric-sub {
+      font-weight: 300;
+      font-size: 13px;
+      color: var(--text-label);
+      margin-top: 8px;
+    }
+
+    /* ===== Architecture / Code Preview ===== */
     .code-section {
       padding: 120px 0;
       background: linear-gradient(to top, transparent, rgba(20, 30, 51, 0.3), transparent);
@@ -511,6 +592,32 @@
 
     .code-content {
       max-width: 480px;
+    }
+
+    .code-content .section-desc {
+      margin-bottom: 32px;
+    }
+
+    .code-checklist {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .code-checklist li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 15px;
+      color: var(--text-muted);
+    }
+
+    .code-checklist li svg {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      color: var(--primary-cyan);
     }
 
     .terminal-window {
@@ -572,87 +679,13 @@
       margin-left: 4px;
     }
 
-    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
-
-    /* ===== Identity Section ===== */
-    .identity-section {
-      padding: 120px 0;
-    }
-
-    .identity-layout {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 64px;
-    }
-
-    .identity-colors {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    .color-swatch {
-      display: flex;
-      align-items: center;
-      background: var(--bg-card);
-      border: 1px solid rgba(148, 163, 184, 0.08);
-      border-radius: 12px;
-      padding: 16px;
-    }
-
-    .color-box {
-      width: 64px;
-      height: 64px;
-      border-radius: 8px;
-      margin-right: 24px;
-      box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
-    }
-
-    .color-info h4 {
-      font-family: var(--font-heading);
-      font-size: 14px;
-      margin-bottom: 4px;
-    }
-
-    .color-info p {
-      font-family: monospace;
-      font-size: 12px;
-      color: var(--text-muted);
-    }
-
-    .identity-typography {
-      background: var(--bg-card);
-      border: 1px solid rgba(148, 163, 184, 0.08);
-      border-radius: 12px;
-      padding: 40px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .type-sample-1 {
-      font-family: var(--font-heading);
-      font-weight: 800;
-      font-size: 32px;
-      margin-bottom: 16px;
-      color: var(--text-main);
-    }
-
-    .type-sample-2 {
-      font-family: var(--font-body);
-      font-weight: 400;
-      font-size: 16px;
-      color: var(--text-muted);
-      line-height: 1.7;
-    }
-
-    /* ===== Contact Section ===== */
-    .contact-section {
+    /* ===== Contact ===== */
+    .contact {
       padding: 80px 0 160px;
       text-align: center;
     }
 
-    .contact-box {
+    .contact-inner {
       background: var(--bg-card);
       border: 1px solid rgba(148, 163, 184, 0.08);
       border-radius: var(--radius-lg);
@@ -661,46 +694,102 @@
       margin: 0 auto;
     }
 
-    .contact-box h2 {
+    .contact-inner h2 {
       font-family: var(--font-heading);
       font-weight: 600;
       font-size: 24px;
       margin-bottom: 16px;
     }
 
-    .contact-box p {
-      color: var(--text-muted);
-      margin-bottom: 32px;
+    .contact-inner .section-desc {
+      margin: 0 auto 32px;
       font-size: 15px;
     }
 
     /* ===== Footer ===== */
     .footer {
-      padding: 40px 0;
+      padding: 60px 0 40px;
       border-top: 1px solid rgba(148, 163, 184, 0.05);
       background: #080C17;
     }
 
-    .footer-inner {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 24px;
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 56px;
+    }
+
+    .footer-brand p {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-top: 16px;
+      max-width: 320px;
     }
 
     .footer-brand svg {
-      height: 24px;
-      width: auto;
-      opacity: 0.5;
+      opacity: 0.6;
     }
 
-    .footer-text {
+    .footer-col h4 {
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: 13px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--text-main);
+      margin-bottom: 20px;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .footer-col ul a {
+      font-size: 14px;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .footer-col ul a:hover {
+      color: var(--primary-cyan);
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 32px;
+      border-top: 1px solid rgba(148, 163, 184, 0.05);
+    }
+
+    .footer-bottom p {
       font-size: 13px;
       color: var(--text-label);
     }
 
-    /* ===== Animations ===== */
+    .footer-bottom-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .footer-bottom-links a {
+      font-size: 13px;
+      color: var(--text-label);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .footer-bottom-links a:hover {
+      color: var(--primary-cyan);
+    }
+
+    /* ===== Scroll Reveal ===== */
     .reveal {
       opacity: 0;
       transform: translateY(20px);
@@ -712,11 +801,13 @@
       transform: translateY(0);
     }
 
+    /* ===== Floating Particles ===== */
     .particles {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
       pointer-events: none; z-index: 0; overflow: hidden;
     }
+
     .particle {
       position: absolute; width: 2px; height: 2px;
       background: var(--primary-cyan); border-radius: 50%;
@@ -730,23 +821,42 @@
       100% { opacity: 0; transform: translateY(-100vh); }
     }
 
+    /* ===== Reduced Motion ===== */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+      .reveal { opacity: 1; transform: none; }
+      .particle { display: none; }
+      .terminal-cursor { animation: none; opacity: 1; }
+    }
+
     /* ===== Responsive ===== */
     @media (max-width: 1024px) {
-      .hero-grid, .code-layout, .identity-layout { grid-template-columns: 1fr; gap: 48px; }
-      .hero-content, .code-content { max-width: 100%; text-align: center; }
-      .hero h2, .section-desc { margin-left: auto; margin-right: auto; }
+      .hero-grid { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+      .hero-content { max-width: 100%; }
+      .hero h2 { margin-left: auto; margin-right: auto; }
       .hero-buttons { justify-content: center; }
-      .about-grid, .features-grid { grid-template-columns: repeat(2, 1fr); }
+      .hero-illustration svg { max-width: 360px; }
+      .info-grid { grid-template-columns: repeat(2, 1fr); }
+      .metrics-grid { gap: 32px; }
+      .metric-item:not(:last-child)::after { display: none; }
+      .code-layout, .identity-layout { grid-template-columns: 1fr; gap: 48px; }
+      .code-content, .identity-content { max-width: 100%; text-align: center; }
+      .code-checklist li { justify-content: center; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
     }
 
     @media (max-width: 768px) {
       .nav-links, .nav-cta { display: none; }
       .mobile-toggle { display: block; }
-      .about-grid, .features-grid { grid-template-columns: 1fr; }
-      .metrics-inner { padding: 40px 24px; flex-direction: column; gap: 32px; }
-      .contact-box { padding: 40px 24px; }
-      .footer-inner { flex-direction: column; text-align: center; }
-      .hero { padding-top: 100px; min-height: auto; padding-bottom: 60px; }
+      .info-grid { grid-template-columns: 1fr; }
+      .metrics-grid { grid-template-columns: 1fr; gap: 40px; }
+      .metrics-inner, .contact-inner { padding: 48px 24px; }
+      .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+      .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+      .hero { min-height: auto; padding-top: 100px; padding-bottom: 60px; }
+      .hero-illustration { display: none; }
+      .color-palette { flex-wrap: wrap; }
+      .color-swatch { min-width: calc(50% - 8px); }
     }
   </style>
 </head>
@@ -763,9 +873,9 @@
       </a>
       <ul class="nav-links">
         <li><a href="#about">About</a></li>
-        <li><a href="#architecture">Architecture</a></li>
-        <li><a href="#terminal">Terminal</a></li>
         <li><a href="#identity">Identity</a></li>
+        <li><a href="#metrics">Scale</a></li>
+        <li><a href="#architecture">Architecture</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
       <div class="nav-cta">
@@ -773,19 +883,19 @@
           <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
           System Auth
         </a>
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
       </div>
-      <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu" aria-expanded="false">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-      </button>
     </div>
   </nav>
 
   <!-- Mobile Menu -->
   <div class="mobile-menu" id="mobileMenu" role="navigation">
     <a href="#about" onclick="closeMobile()">About</a>
-    <a href="#architecture" onclick="closeMobile()">Architecture</a>
-    <a href="#terminal" onclick="closeMobile()">Terminal</a>
     <a href="#identity" onclick="closeMobile()">Identity</a>
+    <a href="#metrics" onclick="closeMobile()">Scale</a>
+    <a href="#architecture" onclick="closeMobile()">Architecture</a>
     <a href="#contact" onclick="closeMobile()">Contact</a>
     <div style="margin-top: 24px; padding-top: 24px; border-top: 1px solid rgba(148,163,184,0.1);">
       <a href="#" style="border: none; color: var(--text-muted); font-size: 14px; text-transform: uppercase; letter-spacing: 1px;">System Auth</a>
@@ -797,45 +907,95 @@
     <div class="container">
       <div class="hero-grid">
         <div class="hero-content reveal">
-          <h1>A private system for managing <span class="gradient-text">web-applications.</span></h1>
-          <h2>WBBX.de is a private infrastructure point created to bring structure to our internal deployments. It exists for one reason: to make day-to-day administration simpler for its founders.</h2>
+          <h1>A Private System for<br><span class="gradient-text">Managing Web Apps.</span></h1>
+          <h2>WBBX.de is a private infrastructure point created to bring structure to web applications. It exists for one reason: to make day-to-day administration simpler for its founders.</h2>
           <div class="hero-buttons">
-            <a href="#about" class="btn btn-primary">Read the Outline</a>
+            <a href="#about" class="btn btn-primary">Understand the System</a>
             <a href="#architecture" class="btn btn-secondary">View Architecture</a>
           </div>
         </div>
         <div class="hero-illustration reveal">
-          <!-- Abstract Technical Node Illustration -->
+          <!-- Abstract Tech Illustration -->
           <svg viewBox="0 0 500 420" fill="none" xmlns="http://www.w3.org/2000/svg">
             <defs>
-              <linearGradient id="hGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#06B6D4" stop-opacity="0.2"/>
-                <stop offset="100%" stop-color="#3B82F6" stop-opacity="0.05"/>
+              <linearGradient id="heroGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#06B6D4" stop-opacity="0.3"/>
+                <stop offset="100%" stop-color="#3B82F6" stop-opacity="0.1"/>
               </linearGradient>
-              <linearGradient id="hGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+              <linearGradient id="heroGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
                 <stop offset="0%" stop-color="#06B6D4"/>
                 <stop offset="100%" stop-color="#3B82F6"/>
               </linearGradient>
-              <filter id="glow">
-                <feGaussianBlur stdDeviation="6" result="blur"/>
+              <linearGradient id="heroGrad3" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#06B6D4" stop-opacity="0.6"/>
+                <stop offset="100%" stop-color="#3B82F6" stop-opacity="0.2"/>
+              </linearGradient>
+              <filter id="heroGlow">
+                <feGaussianBlur stdDeviation="8" result="blur"/>
                 <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
               </filter>
             </defs>
-            <g stroke="url(#hGrad2)" stroke-width="1" opacity="0.15">
-              <circle cx="250" cy="210" r="140" stroke-dasharray="4 8" />
-              <circle cx="250" cy="210" r="100" />
-              <circle cx="250" cy="210" r="60" stroke-dasharray="2 4" />
+            <g opacity="0.06" stroke="#06B6D4" stroke-width="0.8">
+              <path d="M60 80 L100 57 L140 80 L140 126 L100 149 L60 126Z"/>
+              <path d="M140 80 L180 57 L220 80 L220 126 L180 149 L140 126Z"/>
+              <path d="M100 149 L140 126 L180 149 L180 195 L140 218 L100 195Z"/>
+              <path d="M260 60 L300 37 L340 60 L340 106 L300 129 L260 106Z"/>
+              <path d="M340 60 L380 37 L420 60 L420 106 L380 129 L340 106Z"/>
+              <path d="M300 129 L340 106 L380 129 L380 175 L340 198 L300 175Z"/>
+              <path d="M180 195 L220 172 L260 195 L260 241 L220 264 L180 241Z"/>
             </g>
-            <path d="M250 70 L350 280 L150 280 Z" fill="url(#hGrad1)" stroke="url(#hGrad2)" stroke-width="1" opacity="0.6"/>
-            <circle cx="250" cy="210" r="16" fill="url(#hGrad2)" filter="url(#glow)"/>
-            <circle cx="250" cy="70" r="6" fill="#06B6D4"/>
-            <circle cx="350" cy="280" r="6" fill="#3B82F6"/>
-            <circle cx="150" cy="280" r="6" fill="#06B6D4"/>
-            <g stroke="url(#hGrad2)" stroke-width="1.5" opacity="0.5">
-              <line x1="250" y1="210" x2="250" y2="70" />
-              <line x1="250" y1="210" x2="350" y2="280" />
-              <line x1="250" y1="210" x2="150" y2="280" />
+            <circle cx="250" cy="200" r="72" fill="url(#heroGrad1)" stroke="url(#heroGrad2)" stroke-width="1.5" opacity="0.9">
+              <animate attributeName="r" values="72;76;72" dur="4s" repeatCount="indefinite"/>
+            </circle>
+            <circle cx="250" cy="200" r="48" fill="none" stroke="url(#heroGrad2)" stroke-width="0.8" opacity="0.5" stroke-dasharray="4 6">
+              <animateTransform attributeName="transform" type="rotate" from="0 250 200" to="360 250 200" dur="20s" repeatCount="indefinite"/>
+            </circle>
+            <circle cx="250" cy="200" r="24" fill="url(#heroGrad2)" opacity="0.7" filter="url(#heroGlow)"/>
+            <ellipse cx="250" cy="200" rx="150" ry="50" fill="none" stroke="url(#heroGrad3)" stroke-width="1" transform="rotate(-20 250 200)">
+              <animateTransform attributeName="transform" type="rotate" from="-20 250 200" to="340 250 200" dur="30s" repeatCount="indefinite"/>
+            </ellipse>
+            <ellipse cx="250" cy="200" rx="130" ry="42" fill="none" stroke="url(#heroGrad3)" stroke-width="0.7" transform="rotate(40 250 200)">
+              <animateTransform attributeName="transform" type="rotate" from="40 250 200" to="-320 250 200" dur="25s" repeatCount="indefinite"/>
+            </ellipse>
+            <circle r="5" fill="#06B6D4" opacity="0.9">
+              <animateMotion dur="30s" repeatCount="indefinite" path="M100,200 A150,50 -20 1,1 400,200 A150,50 -20 1,1 100,200"/>
+            </circle>
+            <circle r="4" fill="#3B82F6" opacity="0.8">
+              <animateMotion dur="25s" repeatCount="indefinite" path="M120,200 A130,42 40 1,1 380,200 A130,42 40 1,1 120,200"/>
+            </circle>
+            <circle r="3.5" fill="#06B6D4" opacity="0.7">
+              <animateMotion dur="18s" repeatCount="indefinite" path="M100,200 A150,50 -20 1,1 400,200 A150,50 -20 1,1 100,200" begin="-8s"/>
+            </circle>
+            <g stroke="url(#heroGrad2)" stroke-width="0.8" opacity="0.25">
+              <line x1="100" y1="140" x2="250" y2="200"/>
+              <line x1="400" y1="140" x2="250" y2="200"/>
+              <line x1="140" y1="320" x2="250" y2="200"/>
+              <line x1="360" y1="320" x2="250" y2="200"/>
+              <line x1="80" y1="240" x2="250" y2="200"/>
+              <line x1="420" y1="240" x2="250" y2="200"/>
             </g>
+            <g>
+              <circle cx="100" cy="140" r="8" fill="#0B1120" stroke="#06B6D4" stroke-width="1.2"/>
+              <circle cx="100" cy="140" r="3" fill="#06B6D4"/>
+              <circle cx="400" cy="140" r="8" fill="#0B1120" stroke="#3B82F6" stroke-width="1.2"/>
+              <circle cx="400" cy="140" r="3" fill="#3B82F6"/>
+              <circle cx="140" cy="320" r="8" fill="#0B1120" stroke="#3B82F6" stroke-width="1.2"/>
+              <circle cx="140" cy="320" r="3" fill="#3B82F6"/>
+              <circle cx="360" cy="320" r="8" fill="#0B1120" stroke="#06B6D4" stroke-width="1.2"/>
+              <circle cx="360" cy="320" r="3" fill="#06B6D4"/>
+              <circle cx="80" cy="240" r="6" fill="#0B1120" stroke="#06B6D4" stroke-width="1"/>
+              <circle cx="80" cy="240" r="2.5" fill="#06B6D4"/>
+              <circle cx="420" cy="240" r="6" fill="#0B1120" stroke="#3B82F6" stroke-width="1"/>
+              <circle cx="420" cy="240" r="2.5" fill="#3B82F6"/>
+            </g>
+            <circle cx="250" cy="200" r="72" fill="none" stroke="#06B6D4" stroke-width="0.6" opacity="0">
+              <animate attributeName="r" values="72;120" dur="3s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0.4;0" dur="3s" repeatCount="indefinite"/>
+            </circle>
+            <circle cx="250" cy="200" r="72" fill="none" stroke="#3B82F6" stroke-width="0.6" opacity="0">
+              <animate attributeName="r" values="72;120" dur="3s" begin="1.5s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0.3;0" dur="3s" begin="1.5s" repeatCount="indefinite"/>
+            </circle>
           </svg>
         </div>
       </div>
@@ -843,103 +1003,146 @@
   </header>
 
   <!-- About Section -->
-  <section class="about-section" id="about">
+  <section class="info-section" id="about">
     <div class="container">
-      <div class="about-header reveal">
+      <div class="info-header reveal">
         <p class="section-label">Foundation</p>
         <h2 class="section-title">What this is — and what it isn't.</h2>
-        <p class="section-desc">We built WBBX to eliminate the friction of deploying and tracking our internal tools, services, and private experiments.</p>
+        <p class="section-desc">WBBX.de is a private infrastructure point created to bring structure to our internal deployments. It exists for one reason: to make day-to-day administration simpler for its founders.</p>
       </div>
-      <div class="about-grid">
-        <div class="about-card reveal">
-          <svg class="about-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-          </svg>
-          <h3>No public access</h3>
-          <p>There are no sign-ups, no public APIs, and no external-facing services. Every layer of this infrastructure is closed by default.</p>
-        </div>
-        <div class="about-card reveal">
-          <svg class="about-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10"></circle>
-            <circle cx="12" cy="12" r="3"></circle>
-          </svg>
-          <h3>Single reference point</h3>
-          <p>One unified place to track, deploy, and manage every web application — completely replacing scattered scripts and disparate cloud consoles.</p>
-        </div>
-        <div class="about-card reveal">
-          <svg class="about-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
-          </svg>
-          <h3>Zero commercial intent</h3>
+      <div class="info-grid">
+        <!-- About 1: No Public Access -->
+        <article class="info-card reveal">
+          <div class="info-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+              <path d="M7 11V7a5 5 0 0110 0v4"/>
+            </svg>
+          </div>
+          <h3>No Public Access</h3>
+          <p>There are no sign-ups, no APIs, and no external-facing services. Every layer is closed by default to ensure maximum security.</p>
+        </article>
+
+        <!-- About 2: Single Reference Point -->
+        <article class="info-card reveal">
+          <div class="info-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <circle cx="12" cy="12" r="3"/>
+            </svg>
+          </div>
+          <h3>Single Reference Point</h3>
+          <p>One unified place to track, deploy, and manage every application — completely replacing scattered scripts and disparate cloud consoles.</p>
+        </article>
+
+        <!-- About 3: Zero Commercial Intent -->
+        <article class="info-card reveal">
+          <div class="info-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+            </svg>
+          </div>
+          <h3>Zero Commercial Intent</h3>
           <p>This page exists for transparency and identity only. There is nothing to buy, subscribe to, or request access to here.</p>
-        </div>
+        </article>
       </div>
     </div>
   </section>
 
-  <!-- Architecture Section -->
-  <section class="architecture" id="architecture">
+  <!-- Identity / Branding Section -->
+  <section class="identity-section" id="identity">
     <div class="container">
-      <div class="arch-header reveal">
-        <p class="section-label">Capabilities</p>
-        <h2 class="section-title">System Architecture</h2>
-        <p class="section-desc">A highly specialized layer that handles our private networking, compute provisioning, and continuous deployment workflows.</p>
-      </div>
-      <div class="features-grid">
-        <article class="feature-card reveal">
-          <div class="feature-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h4M4 16h4M16 8h4M16 16h4"/><path d="M8 8l4-4 4 4M8 16l4 4 4-4"/><line x1="12" y1="4" x2="12" y2="20"/></svg>
+      <div class="identity-layout">
+        <div class="identity-content reveal">
+          <p class="section-label">Brand</p>
+          <h2 class="section-title">The Face of the Infrastructure</h2>
+          <p class="section-desc">The WBBX identity is rooted in technical minimalism. The W motif represents structured layers of deployment, utilizing a Cyan-to-Blue gradient to signify flow and connectivity across private nodes.</p>
+          <div class="color-palette">
+            <div class="color-swatch" style="background: #0B1120;">#0B1120</div>
+            <div class="color-swatch" style="background: #06B6D4;">#06B6D4</div>
+            <div class="color-swatch" style="background: #3B82F6;">#3B82F6</div>
           </div>
-          <h3>Internal Gateway</h3>
-          <p>Unified ingress routing for all internal subdomains with automated SSL termination and strict IP whitelisting.</p>
-        </article>
-        <article class="feature-card reveal">
-          <div class="feature-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-          </div>
-          <h3>Isolated Environments</h3>
-          <p>Containerized workloads running in strict isolation. Production, staging, and ephemeral preview branches.</p>
-        </article>
-        <article class="feature-card reveal">
-          <div class="feature-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12h-4"/></svg>
-          </div>
-          <h3>Automated Workflows</h3>
-          <p>Direct Git integration triggering immutable builds. No manual server configuration required post-commit.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- Scale / Metrics -->
-  <section class="metrics">
-    <div class="container reveal">
-      <div class="metrics-inner">
-        <div class="metric-item">
-          <div class="metric-value gradient-text">100<span style="font-size: 0.6em">%</span></div>
-          <div class="metric-label">Private Topology</div>
         </div>
-        <div class="metric-item">
-          <div class="metric-value gradient-text">0</div>
-          <div class="metric-label">Public Endpoints</div>
-        </div>
-        <div class="metric-item">
-          <div class="metric-value gradient-text">1</div>
-          <div class="metric-label">Unified Platform</div>
+        <div class="identity-showcase reveal">
+          <svg viewBox="0 0 108 108" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="idBoxBg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#141E33"/><stop offset="100%" stop-color="#0B1120"/></linearGradient>
+              <linearGradient id="idBoxBorder" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#06B6D4"/><stop offset="100%" stop-color="#3B82F6"/></linearGradient>
+              <linearGradient id="idGradFront" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#06B6D4"/><stop offset="100%" stop-color="#3B82F6"/></linearGradient>
+              <linearGradient id="idGradBack" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#2563EB"/><stop offset="100%" stop-color="#0369A1"/></linearGradient>
+              <filter id="idShadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="3" dy="2" stdDeviation="3" flood-color="#000000" flood-opacity="0.6"/></filter>
+            </defs>
+            <rect x="1" y="1" width="106" height="106" rx="24" fill="url(#idBoxBg)" stroke="url(#idBoxBorder)" stroke-width="2"/>
+            <circle cx="86" cy="94" r="2.5" fill="#06B6D4"/>
+            <circle cx="94" cy="94" r="2.5" fill="#3B82F6"/>
+            <g stroke="url(#idBoxBorder)" stroke-width="1.5" stroke-linejoin="round">
+              <polygon points="82,19 98,19 82,89 66,89" fill="url(#idGradBack)"/>
+              <polygon points="46,39 62,39 46,89 30,89" fill="url(#idGradBack)"/>
+              <polygon points="46,39 62,39 82,89 66,89" fill="url(#idGradFront)" filter="url(#idShadow)"/>
+              <polygon points="10,19 26,19 46,89 30,89" fill="url(#idGradFront)" filter="url(#idShadow)"/>
+            </g>
+          </svg>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Code / Terminal Preview -->
-  <section class="code-section" id="terminal">
+  <!-- Metrics / Internal Stats -->
+  <section class="metrics" id="metrics">
+    <div class="container">
+      <div class="metrics-inner reveal">
+        <div class="metrics-header">
+          <p class="section-label">Internal Scale</p>
+          <h2 class="section-title">Built for Absolute Control</h2>
+          <p class="section-desc">Every metric reflects a commitment to privacy, structure, and self-sufficiency over external growth or scale.</p>
+        </div>
+        <div class="metrics-grid">
+          <div class="metric-item">
+            <div class="metric-value gradient-text"><span class="counter" data-target="0">0</span></div>
+            <div class="metric-label">Public Sign-ups</div>
+            <div class="metric-sub">Closed infrastructure by design</div>
+          </div>
+          <div class="metric-item">
+            <div class="metric-value gradient-text"><span class="counter" data-target="1">0</span></div>
+            <div class="metric-label">Reference Point</div>
+            <div class="metric-sub">Unified administrative layer</div>
+          </div>
+          <div class="metric-item">
+            <div class="metric-value gradient-text"><span class="counter" data-target="100">0</span><span class="metric-unit">%</span></div>
+            <div class="metric-label">Private Infrastructure</div>
+            <div class="metric-sub">No commercial access or APIs</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Architecture / Code Preview -->
+  <section class="code-section" id="architecture">
     <div class="container">
       <div class="code-layout">
         <div class="code-content reveal">
-          <p class="section-label">Administration</p>
-          <h2 class="section-title">CLI-Driven Operations</h2>
-          <p class="section-desc">The entire infrastructure is managed via a custom CLI, allowing founders to provision new services, inspect logs, and manage secrets without leaving the terminal.</p>
+          <p class="section-label">Internal Architecture</p>
+          <h2 class="section-title">Structure Over Chaos</h2>
+          <p class="section-desc">Administering private web applications shouldn't rely on fragmented scripts and memory. WBBX centralizes the entire control plane.</p>
+          <ul class="code-checklist">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+              Zero external attack surface
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+              Centralized configuration management
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+              Instant environment status and auditing
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+              Automated internal SSL & provisioning
+            </li>
+          </ul>
         </div>
         <div class="terminal-window reveal">
           <div class="terminal-bar">
@@ -949,16 +1152,17 @@
             <span class="terminal-title">admin@wbbx-core:~</span>
           </div>
           <div class="terminal-body">
-            <div><span class="prompt">$</span> <span class="cmd">wbbx-admin deploy</span> <span class="flag">--env</span><span class="string">=production</span> <span class="flag">--target</span><span class="string">=internal-api</span></div>
+            <div><span class="prompt">$</span> <span class="cmd">wbbx status</span> <span class="flag">--env</span> <span class="string">internal</span></div>
             <div style="margin-top:8px;"><span class="comment"># Authenticating with hardware key...</span></div>
-            <div><span class="comment"># Authorized. Context: founder_root</span></div>
-            <div style="margin-top:8px;"><span class="comment"># Fetching artifacts...</span></div>
-            <div>  <span class="key">Source</span>   <span class="val">git.internal/backend/api (HEAD -> main)</span></div>
-            <div>  <span class="key">Builder</span>  <span class="val">docker-buildx @ cluster-alpha</span></div>
-            <div style="margin-top:8px;"><span class="comment"># Rolling deployment strategy...</span></div>
-            <div>  <span class="bracket">[</span><span class="val">#########################</span><span class="bracket">]</span> <span class="val">100%</span></div>
-            <div style="margin-top:8px;"><span class="key">Status:</span> <span style="color:#10B981;">Deployed successfully.</span></div>
-            <div><span class="key">Route:</span>  <span class="string">https://api.wbbx.internal</span></div>
+            <div><span class="comment"># Verified: Founder Clearance</span></div>
+            <div style="margin-top:8px;"><span class="comment"># Fetching application states...</span></div>
+            <div>  <span class="bracket">[</span><span class="val">core-api</span><span class="bracket">]</span>      <span class="key">Running</span>   <span class="val">(v2.1.4)</span></div>
+            <div>  <span class="bracket">[</span><span class="val">admin-panel</span><span class="bracket">]</span>   <span class="key">Idle</span>      <span class="val">(v1.8.0)</span></div>
+            <div>  <span class="bracket">[</span><span class="val">data-sync</span><span class="bracket">]</span>     <span class="key">Running</span>   <span class="val">(v1.0.8)</span></div>
+            <div style="margin-top:8px;"><span class="comment"># System Health</span></div>
+            <div>  <span class="key">SSL</span>          <span class="val">Active (Internal CA)</span></div>
+            <div>  <span class="key">External</span>     <span class="val">Locked Down</span></div>
+            <div style="margin-top:8px;"><span style="color:#10B981;">All systems nominal</span> <span class="bracket">—</span> <span class="string">0 external endpoints exposed</span></div>
             <div style="margin-top:8px;"><span class="prompt">$</span> <span class="terminal-cursor"></span></div>
           </div>
         </div>
@@ -966,57 +1170,13 @@
     </div>
   </section>
 
-  <!-- Identity Section -->
-  <section class="identity-section" id="identity">
-    <div class="container">
-      <div class="arch-header reveal">
-        <p class="section-label">Brand</p>
-        <h2 class="section-title">Visual Identity</h2>
-        <p class="section-desc">Design principles for internal WBBX tools, ensuring a consistent, low-fatigue experience for the administrative console.</p>
-      </div>
-      <div class="identity-layout reveal">
-        <div class="identity-colors">
-          <div class="color-swatch">
-            <div class="color-box" style="background: #06B6D4;"></div>
-            <div class="color-info">
-              <h4>Primary Cyan</h4>
-              <p>HEX #06B6D4 | Active States</p>
-            </div>
-          </div>
-          <div class="color-swatch">
-            <div class="color-box" style="background: #3B82F6;"></div>
-            <div class="color-info">
-              <h4>System Blue</h4>
-              <p>HEX #3B82F6 | Interactions</p>
-            </div>
-          </div>
-          <div class="color-swatch">
-            <div class="color-box" style="background: #0B1120;"></div>
-            <div class="color-info">
-              <h4>Deep Slate</h4>
-              <p>HEX #0B1120 | Base Background</p>
-            </div>
-          </div>
-        </div>
-        <div class="identity-typography">
-          <p style="font-family: var(--font-heading); color: var(--text-label); font-size: 12px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 24px;">Typography</p>
-          <div class="type-sample-1">Montserrat</div>
-          <p class="type-sample-2" style="margin-bottom: 32px;">Used exclusively for headings, brand elements, and numerical data points. Weights: 500, 600, 800.</p>
-          
-          <div class="type-sample-1" style="font-family: var(--font-body); font-weight: 500;">Inter</div>
-          <p class="type-sample-2">The system body typeface. Optimized for high legibility in dense administrative interfaces and log streams. Weights: 300, 400, 500.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- Contact Section -->
-  <section class="contact-section" id="contact">
-    <div class="container reveal">
-      <div class="contact-box">
-        <h2>Direct Inquiries</h2>
-        <p>This system is closed to the public. If you are a security researcher reporting a vulnerability, or have a legal inquiry regarding the network, please use the secure channel.</p>
-        <a href="mailto:hostmaster@wbbx.de" class="btn btn-primary">Contact Hostmaster</a>
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="contact-inner reveal">
+        <h2 class="section-title" style="font-size: 28px;">Administrative Inquiries</h2>
+        <p class="section-desc">This system is closed to the public. If you have questions related to WBBX.de or its associated infrastructure, please reach out via the central contact point.</p>
+        <a href="mailto:admin@wbbx.de" class="btn btn-primary">Contact Administration</a>
       </div>
     </div>
   </section>
@@ -1024,10 +1184,9 @@
   <!-- Footer -->
   <footer class="footer">
     <div class="container">
-      <div class="footer-inner">
+      <div class="footer-grid">
         <div class="footer-brand">
-          <!-- Scaled down, muted version of the logo -->
-          <svg viewBox="0 0 108 108" xmlns="http://www.w3.org/2000/svg">
+          <svg width="40" height="40" viewBox="0 0 108 108" xmlns="http://www.w3.org/2000/svg">
             <rect x="1" y="1" width="106" height="106" rx="24" fill="#141E33" stroke="#64748B" stroke-width="2"/>
             <circle cx="86" cy="94" r="2.5" fill="#64748B" />
             <circle cx="94" cy="94" r="2.5" fill="#64748B" />
@@ -1038,9 +1197,32 @@
               <polygon points="10,19 26,19 46,89 30,89" />
             </g>
           </svg>
+          <p>A private infrastructure point created to bring structure to web applications. Built for founders, by founders.</p>
         </div>
-        <div class="footer-text">
-          &copy; 2026 WBBX. Private Infrastructure. All rights reserved.
+        <div class="footer-col">
+          <h4>System</h4>
+          <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#identity">Identity</a></li>
+            <li><a href="#architecture">Architecture</a></li>
+            <li><a href="#metrics">Scale</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Security</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 WBBX.de. Private Infrastructure. All rights reserved.</p>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
         </div>
       </div>
     </div>
@@ -1084,9 +1266,16 @@
     // ===== Scroll reveal with IntersectionObserver =====
     const revealElements = document.querySelectorAll('.reveal');
     const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
+      entries.forEach((entry, index) => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
+          const parent = entry.target.parentElement;
+          const siblings = parent ? Array.from(parent.querySelectorAll('.reveal')) : [];
+          const idx = siblings.indexOf(entry.target);
+
+          setTimeout(() => {
+            entry.target.classList.add('visible');
+          }, idx > 0 ? idx * 100 : 0);
+
           revealObserver.unobserve(entry.target);
         }
       });
@@ -1097,7 +1286,56 @@
 
     revealElements.forEach(el => revealObserver.observe(el));
 
-    // ===== Floating particles (Slower/Subtle for professional look) =====
+    // ===== Counter animation =====
+    const counters = document.querySelectorAll('.counter');
+    let countersAnimated = false;
+
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !countersAnimated) {
+          countersAnimated = true;
+          animateCounters();
+          counterObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    const metricsSection = document.getElementById('metrics');
+    if (metricsSection) {
+      counterObserver.observe(metricsSection);
+    }
+
+    function animateCounters() {
+      counters.forEach(counter => {
+        const target = parseFloat(counter.getAttribute('data-target'));
+        const isDecimal = target % 1 !== 0;
+        const duration = 1500;
+        const startTime = performance.now();
+
+        function updateCounter(currentTime) {
+          const elapsed = currentTime - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          const current = target * eased;
+
+          if (isDecimal) {
+            counter.textContent = current.toFixed(2);
+          } else {
+            // For small numbers like 0 or 1, snap quickly to avoid weird decimals
+            counter.textContent = target < 2 ? Math.floor(current + 0.5) : Math.round(current);
+          }
+
+          if (progress < 1) {
+            requestAnimationFrame(updateCounter);
+          } else {
+            counter.textContent = isDecimal ? target.toFixed(2) : target;
+          }
+        }
+        requestAnimationFrame(updateCounter);
+      });
+    }
+
+    // ===== Floating particles =====
     const particlesContainer = document.getElementById('particles');
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
@@ -1105,11 +1343,12 @@
       function createParticle() {
         const particle = document.createElement('div');
         particle.classList.add('particle');
+
         const x = Math.random() * 100;
-        const size = Math.random() * 2 + 0.5;
-        const duration = Math.random() * 20 + 15; // Slower
+        const size = Math.random() * 2 + 1;
+        const duration = Math.random() * 20 + 15;
         const delay = Math.random() * 10;
-        const opacity = Math.random() * 0.15 + 0.05; // Lower opacity
+        const opacity = Math.random() * 0.15 + 0.05;
 
         particle.style.left = x + '%';
         particle.style.bottom = '-10px';
@@ -1133,7 +1372,7 @@
         }, (duration + delay) * 1000);
       }
 
-      for (let i = 0; i < 12; i++) { // Fewer particles
+      for (let i = 0; i < 15; i++) {
         createParticle();
       }
     }
